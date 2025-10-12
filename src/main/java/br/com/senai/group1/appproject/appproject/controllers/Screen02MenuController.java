@@ -43,6 +43,9 @@ public class Screen02MenuController implements Initializable {
         this.buttonSettings.setOnAction((ActionEvent event) -> {
            this.buttonSettingsEvent();
         });
+        this.buttonCredits.setOnAction((ActionEvent event) -> {
+           this.buttonCreditsEvent();
+        });
     }
 
     public void buttonPlayEvent() {}
@@ -54,7 +57,12 @@ public class Screen02MenuController implements Initializable {
         stage.setScene(SceneHandler.screen03Settings);
     }
 
-    public void buttonCreditsEvent() {}
+    public void buttonCreditsEvent() {
+        Scene scene = this.buttonSettings.getScene();
+        Stage stage = (Stage) scene.getWindow();
+
+        stage.setScene(SceneHandler.screen08Credits);
+    }
 
 
     public void buttonCloseEvent() {
