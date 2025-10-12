@@ -47,6 +47,7 @@ public class Screen03SettingsController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.populateResolutionMenu();
         this.configureVolumeSlider();
+        this.configureSoundEffectsSlider();
         this.buttonBack.setOnAction((ActionEvent event) -> {
             this.buttonBackEvent();
         });
@@ -112,6 +113,22 @@ public class Screen03SettingsController implements Initializable {
         this.volumeSlider.setShowTickMarks(true);
 
         this.volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
+                double value = newValue.doubleValue();
+                System.out.println(value);
+            }
+        });
+    }
+
+    public void configureSoundEffectsSlider() {
+        this.soundEffectsSlider.setMin(0);
+        this.soundEffectsSlider.setMax(100);
+
+        this.soundEffectsSlider.setShowTickLabels(true);
+        this.soundEffectsSlider.setShowTickMarks(true);
+
+        this.soundEffectsSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
                 double value = newValue.doubleValue();
