@@ -3,6 +3,7 @@ module br.com.senai.group1.appproject.appproject {
     requires javafx.fxml;
     requires java.desktop;
     requires jdk.compiler;
+    requires javafx.graphics;
 
 
     opens br.com.senai.group1.appproject.appproject to javafx.fxml;
