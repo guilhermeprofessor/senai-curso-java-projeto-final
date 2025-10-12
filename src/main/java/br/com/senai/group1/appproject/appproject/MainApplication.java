@@ -26,6 +26,7 @@ public class MainApplication extends Application {
         SceneHandler.screen01Opening = scene;
         SceneHandler.screen02Menu = this.loadScreen02MenuScene(stage);
         SceneHandler.screen03Settings = this.loadScreen03SettingsScene(stage);
+        SceneHandler.screen08Credits = this.loadScreen08CreditsScene(stage);
 
 
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -68,6 +69,12 @@ public class MainApplication extends Application {
 
     public Scene loadScreen03SettingsScene(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(ScreenViewUtils.SCREEN_03_SETTINGS_FXML));
+        Scene scene = new Scene(root, 1280, 720);
+
+        return scene;
+    }
+    public Scene loadScreen08CreditsScene(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(ScreenViewUtils.SCREEN_08_CREDITS_FXML));
         Scene scene = new Scene(root, 1280, 720);
 
         return scene;
