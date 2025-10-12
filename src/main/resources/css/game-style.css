@@ -16,11 +16,22 @@
     -fx-font-weight:bold;
 }
 
+.screen-credits-label {
+    -fx-text-fill:rgba(0,0,0,1);
+    -fx-font-size:21px;
+    -fx-font-weight:bold;
+}
+
 
 .screen-controller-label {
     -fx-text-fill:rgba(0,0,0,1);
     -fx-font-size:14px;
     -fx-font-weight:bold;
+}
+.screen-credits-teams-name-label {
+    -fx-text-fill:rgba(0,0,0,1);
+    -fx-font-size:17px;
+    -fx-font-weight:normal;
 }
 
 .button {
