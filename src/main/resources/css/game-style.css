@@ -1,0 +1,23 @@
+.opening-game-course-title {
+    -fx-text-fill:rgba(0,0,0,1);
+    -fx-font-size:17px;
+    -fx-font-weight:bold;
+}
+
+.screen-title {
+    -fx-text-fill:rgba(0,0,0,1);
+    -fx-font-size:24px;
+    -fx-font-weight:bold;
+}
+
+.button {
+    -fx-background-color:black;
+    -fx-text-fill:rgba(255,255,255,1);
+    -fx-font-size:17px;
+    -fx-font-weight:bold;
+    -fx-pref-width:230px;
+    -fx-cursor:hand;
+}
+.button:hover {
+    -fx-background-color:gray;
+}
