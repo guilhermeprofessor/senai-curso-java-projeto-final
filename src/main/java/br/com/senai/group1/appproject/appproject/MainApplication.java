@@ -24,6 +24,9 @@ public class MainApplication extends Application {
         stage.setScene(scene);
 
         SceneHandler.screen01Opening = scene;
+        SceneHandler.screen02Menu = this.loadScreen02MenuScene(stage);
+        SceneHandler.screen03Settings = this.loadScreen03SettingsScene(stage);
+
 
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
@@ -32,7 +35,6 @@ public class MainApplication extends Application {
 
         delayToLoadNextScreen.setOnFinished((ActionEvent event) -> {
             try {
-                SceneHandler.screen02Menu = this.loadScreen02MenuScene(stage);
                 stage.setScene(SceneHandler.screen02Menu);
             } catch(Exception ex) {
                 ex.printStackTrace();
@@ -56,8 +58,16 @@ public class MainApplication extends Application {
 
         return scene;
     }
+
     public Scene loadScreen02MenuScene(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(ScreenViewUtils.SCREEN_02_MENU_FXML));
+        Scene scene = new Scene(root, 1280, 720);
+
+        return scene;
+    }
+
+    public Scene loadScreen03SettingsScene(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(ScreenViewUtils.SCREEN_03_SETTINGS_FXML));
         Scene scene = new Scene(root, 1280, 720);
 
         return scene;
