@@ -10,6 +10,19 @@
     -fx-font-weight:bold;
 }
 
+.screen-label {
+    -fx-text-fill:rgba(0,0,0,1);
+    -fx-font-size:17px;
+    -fx-font-weight:bold;
+}
+
+
+.screen-controller-label {
+    -fx-text-fill:rgba(0,0,0,1);
+    -fx-font-size:14px;
+    -fx-font-weight:bold;
+}
+
 .button {
     -fx-background-color:black;
     -fx-text-fill:rgba(255,255,255,1);
