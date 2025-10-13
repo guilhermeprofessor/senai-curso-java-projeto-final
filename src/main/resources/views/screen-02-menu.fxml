@@ -12,19 +12,19 @@
       <ImageView fx:id="backgroundImageView" fitHeight="720.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" />
       <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
          <children>
-            <Button fx:id="buttonPlay" mnemonicParsing="false" text="Jogar">
+            <Button fx:id="playButton" mnemonicParsing="false" text="Jogar">
                <VBox.margin>
                   <Insets top="70.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="buttonSettings" mnemonicParsing="false" text="Configurações" />
-            <Button fx:id="buttonCredits" mnemonicParsing="false" text="Créditos" />
+            <Button fx:id="settingsButton" mnemonicParsing="false" text="Configurações" />
+            <Button fx:id="creditsButton" mnemonicParsing="false" text="Créditos" />
             <Separator opacity="0.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="30.0" top="30.0" />
                </VBox.margin>
             </Separator>
-            <Button fx:id="buttonClose" mnemonicParsing="false" text="Sair" />
+            <Button fx:id="closeButton" mnemonicParsing="false" text="Sair" />
          </children>
       </VBox>
    </children>

@@ -19,16 +19,16 @@ public class Screen02MenuController implements Initializable {
     private ImageView backgroundImageView;
 
     @FXML
-    private Button buttonClose;
+    private Button closeButton;
 
     @FXML
-    private Button buttonCredits;
+    private Button creditsButton;
 
     @FXML
-    private Button buttonPlay;
+    private Button playButton;
 
     @FXML
-    private Button buttonSettings;
+    private Button settingsButton;
 
     @FXML
     private StackPane container;
@@ -37,35 +37,46 @@ public class Screen02MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        this.buttonClose.setOnAction((ActionEvent event) -> {
-           this.buttonCloseEvent();
+        this.closeButton.setOnAction((ActionEvent event) -> {
+           this.closeButtonEvent();
         });
-        this.buttonSettings.setOnAction((ActionEvent event) -> {
-           this.buttonSettingsEvent();
+
+        this.creditsButton.setOnAction((ActionEvent event) -> {
+           this.creditsButtonEvent();
         });
-        this.buttonCredits.setOnAction((ActionEvent event) -> {
-           this.buttonCreditsEvent();
+
+        this.playButton.setOnAction((ActionEvent event) -> {
+           this.playButtonEvent();
+        });
+
+        this.settingsButton.setOnAction((ActionEvent event) -> {
+           this.settingsButtonEvent();
         });
     }
 
-    public void buttonPlayEvent() {}
+    public void playButtonEvent() {
+        Scene scene = this.playButton.getScene();
+        Stage stage = (Stage) scene.getWindow();
 
-    public void buttonSettingsEvent() {
-        Scene scene = this.buttonSettings.getScene();
+        stage.setScene(SceneHandler.screen04Tutorial);
+    }
+
+    public void settingsButtonEvent() {
+        Scene scene = this.settingsButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
         stage.setScene(SceneHandler.screen03Settings);
     }
 
-    public void buttonCreditsEvent() {
-        Scene scene = this.buttonSettings.getScene();
+    public void creditsButtonEvent() {
+        Scene scene = this.settingsButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
         stage.setScene(SceneHandler.screen08Credits);
     }
 
 
-    public void buttonCloseEvent() {
+    public void closeButtonEvent() {
         System.exit(0);
     }
 

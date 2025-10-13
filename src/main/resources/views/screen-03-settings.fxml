@@ -56,7 +56,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Separator>
-            <Button fx:id="buttonBack" mnemonicParsing="false" text="Voltar" />
+            <Button fx:id="backButton" mnemonicParsing="false" text="Voltar" />
          </children>
       </VBox>
    </children>

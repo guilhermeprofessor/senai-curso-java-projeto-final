@@ -29,7 +29,7 @@ public class Screen03SettingsController implements Initializable {
     private ImageView backgroundImageView;
 
     @FXML
-    private Button buttonBack;
+    private Button backButton;
 
     @FXML
     private StackPane container;
@@ -48,8 +48,8 @@ public class Screen03SettingsController implements Initializable {
         this.populateResolutionMenu();
         this.configureVolumeSlider();
         this.configureSoundEffectsSlider();
-        this.buttonBack.setOnAction((ActionEvent event) -> {
-            this.buttonBackEvent();
+        this.backButton.setOnAction((ActionEvent event) -> {
+            this.backButtonEvent();
         });
 
         Screen screen = Screen.getPrimary();
@@ -98,8 +98,8 @@ public class Screen03SettingsController implements Initializable {
     }
 
 
-    public void buttonBackEvent() {
-        Scene scene = this.buttonBack.getScene();
+    public void backButtonEvent() {
+        Scene scene = this.backButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
         stage.setScene(SceneHandler.screen02Menu);
