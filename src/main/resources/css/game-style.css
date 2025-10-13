@@ -45,3 +45,15 @@
 .button:hover {
     -fx-background-color:gray;
 }
+
+.button-arrow {
+    -fx-background-color:rgba(0,0,0,0);
+    -fx-text-fill:rgba(255,255,255,1);
+    -fx-font-size:17px;
+    -fx-font-weight:bold;
+    -fx-pref-width:30px;
+    -fx-cursor:hand;
+}
+.button-arrow:hover {
+    -fx-background-color:gray;
+}
