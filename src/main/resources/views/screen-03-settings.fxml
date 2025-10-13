@@ -29,7 +29,7 @@
                </VBox.margin>
             </Separator>
             <Label styleClass="screen-label" text="Resolução" />
-            <SplitMenuButton fx:id="resolutionMenuButton" mnemonicParsing="false" text="Selecione uma Resolução" />
+            <SplitMenuButton fx:id="resolutionMenuButton" maxWidth="200.0" minWidth="200.0" mnemonicParsing="false" prefWidth="200.0" styleClass="split-menu-button-settings" text="Selecione uma Resolução" />
             <Separator opacity="0.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets top="30.0" />
@@ -44,15 +44,21 @@
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
               </columnConstraints>
               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="42.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label styleClass="screen-controller-label" text="Efeitos Sonoros" GridPane.valignment="TOP" />
-                  <Slider fx:id="soundEffectsSlider" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.valignment="BOTTOM" />
-                  <Label styleClass="screen-controller-label" text="Música" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-                  <Slider fx:id="volumeSlider" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
+                  <Label styleClass="screen-controller-label" text="Efeitos Sonoros" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding></Label>
+                  <Slider fx:id="soundEffectsSlider" showTickLabels="true" showTickMarks="true" styleClass="slider-settings" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.valignment="BOTTOM" />
+                  <Label styleClass="screen-controller-label" text="Música" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding></Label>
+                  <Slider fx:id="volumeSlider" showTickLabels="true" showTickMarks="true" styleClass="slider-settings" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="BOTTOM" />
                </children>
             </GridPane>
             <Separator opacity="0.0" prefWidth="200.0">

@@ -54,6 +54,7 @@ public class Screen03SettingsController extends ScreenBaseController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        
 
         this.populateResolutionMenu();
         this.configureVolumeSlider();
@@ -72,7 +73,7 @@ public class Screen03SettingsController extends ScreenBaseController {
         ResolutionModel[] resolutionList = {
             new ResolutionModel("1920 x 1080 (Full HD)",1920,1080),
             new ResolutionModel("1280 x 720 (HD)",1280,720),
-            new ResolutionModel("720 x 480",720,480)
+            new ResolutionModel("1014 x 570",1014,570)
         };
 
         for (ResolutionModel resolution : resolutionList) {

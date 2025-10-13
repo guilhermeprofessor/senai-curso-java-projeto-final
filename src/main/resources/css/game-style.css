@@ -6,13 +6,15 @@
 }
 
 .screen-title {
-    -fx-text-fill:rgba(232,177,103,1);
+    -fx-text-fill:rgba(240,201,149,1);
+    -fx-effect:dropshadow(three-pass-box, black, 5, 00, 1, 1);
     -fx-font-size:24px;
     -fx-font-weight:bold;
 }
 
 .screen-label {
-    -fx-text-fill:rgba(0,0,0,1);
+    -fx-text-fill:rgba(240,201,149,1);
+    -fx-effect:dropshadow(three-pass-box, black, 5, 00, 1, 1);
     -fx-font-size:17px;
     -fx-font-weight:bold;
 }
@@ -25,9 +27,10 @@
 
 
 .screen-controller-label {
-    -fx-text-fill:rgba(0,0,0,1);
+    -fx-text-fill:rgba(240,201,149,1);
     -fx-font-size:14px;
     -fx-font-weight:bold;
+    -fx-effect:dropshadow(three-pass-box, black, 5, 00, 1, 1);
 }
 .screen-credits-teams-name-label {
     -fx-text-fill:rgba(232,177,103,1);
@@ -77,3 +80,131 @@
 .button-arrow:hover .button-icon{
     -fx-fill:rgba(232,177,103,1);
 }
+
+.slider-settings {
+    -fx-text-color:rgba(240,201,149,1);
+}
+
+
+.slider-settings .thumb {
+    -fx-background-color:rgba(232,177,103,1);
+    -fx-padding: 8px;
+}
+.slider-settings .track {
+    -fx-background-color:rgba(240,201,149,1);
+    -fx-text-color:rgba(240,201,149,1);
+    -fx-pref-height: 3px;
+}
+.slider-settings:focused .thumb {
+    -fx-background-color:rgba(60,30,14,1);
+}
+.slider-settings .axis {
+    -fx-tick-label-fill:rgba(240,201,149,1);
+    -fx-tick-label-font-size:10px;
+    -fx-tick-label-font-family:Arial;
+    -fx-tick-mark-stroke: rgba(240,201,149,1);
+}
+
+
+
+
+.split-menu-button-settings {
+    -fx-background-color: rgba(240,201,149,1);
+    -fx-border-color: rgba(60,30,14,1);
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-padding: 4;
+}
+.split-menu-button-settings:hover {
+    -fx-border-radius: 5 5 5 0;
+    -fx-background-radius: 5 5 0 0;
+}
+
+.split-menu-button-settings > .label {
+    -fx-text-fill: rgba(60,30,14,1);
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-font-weight:bold;
+}
+
+.split-menu-button-settings > .arrow-button {
+    -fx-background-color: rgba(240,201,149,1);
+    -fx-background-radius: 0 5 5 0;
+    -fx-border-radius: 0 5 5 0;
+    -fx-border-width: 0;
+}
+
+.split-menu-button-settings > .arrow-button > .arrow {
+    -fx-background-color:rgba(60,30,14,1);
+}
+
+.split-menu-button-settings:hover {
+    -fx-background-color:rgba(60,30,14,1);
+}
+.split-menu-button-settings:hover .arrow-button {
+    -fx-background-color:rgba(60,30,14,1);
+}
+.split-menu-button-settings:hover .arrow-button > .arrow {
+    -fx-background-color: rgba(240,201,149,1);
+}
+.split-menu-button-settings:hover > .label {
+    -fx-text-fill:  rgba(240,201,149,1);
+}
+
+
+
+.split-menu-button-settings .context-menu {
+    -fx-background-color: rgba(240,201,149,1);
+    -fx-pref-width:200px;
+    -fx-border-color:rgba(60,30,14,1);
+    -fx-text-fill:rgba(60,30,14,1);
+    -fx-border-width:1;
+    -fx-padding:0;
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,.25), 5, 0, 3, 3);
+}
+
+.split-menu-button-settings:hover .context-menu .menu-item {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-text-fill: rgba(60,30,14,1);
+}
+
+
+
+.split-menu-button-settings .context-menu .menu-item {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-text-fill: rgba(240,201,149,1);
+    -fx-cursor:hand;
+    -fx-padding:5px;
+    -fx-border-color: rgba(240,201,149,1);
+}
+
+
+
+
+.split-menu-button-settings:hover .context-menu .menu-item .label {
+    -fx-text-fill: rgba(60,30,14,1);
+}
+
+
+
+.split-menu-button-settings .context-menu .menu-item .label{
+    -fx-text-fill: rgba(60,30,14,1);
+    -fx-background-color:rgba(0,0,0,0);
+}
+
+
+.split-menu-button-settings .context-menu .menu-item:focused {
+    -fx-background-color:rgba(60,30,14,1);
+    -fx-text-fill: rgba(240,201,149,1);
+}
+.split-menu-button-settings .context-menu .menu-item:focused .label {
+    -fx-text-fill: rgba(240,201,149,1);
+}
+
+
+.split-menu-button-settings .context-menu .menu-item:hover {
+    -fx-background-color:rgba(60,30,14,1);
+}
+.split-menu-button-settings .context-menu .menu-item:hover .label {
+    -fx-text-fill: rgba(240,201,149,1);
+}
+
