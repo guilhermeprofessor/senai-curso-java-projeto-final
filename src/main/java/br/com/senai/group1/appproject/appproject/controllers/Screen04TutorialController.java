@@ -1,5 +1,6 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
+import br.com.senai.group1.appproject.appproject.models.PreparedSceneModel;
 import br.com.senai.group1.appproject.appproject.models.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 
-public class Screen04TutorialController implements Initializable {
+public class Screen04TutorialController extends ScreenBaseController {
     @FXML
     private ImageView backgroundImageView;
 
@@ -23,6 +24,14 @@ public class Screen04TutorialController implements Initializable {
 
     @FXML
     private Button startButton;
+
+    public Screen04TutorialController(PreparedSceneModel model) {
+        super(model);
+    }
+
+    public Screen04TutorialController(Stage stage) {
+        super(stage);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

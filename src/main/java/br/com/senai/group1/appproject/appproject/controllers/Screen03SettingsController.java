@@ -1,5 +1,6 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
+import br.com.senai.group1.appproject.appproject.models.PreparedSceneModel;
 import br.com.senai.group1.appproject.appproject.models.ResolutionModel;
 import br.com.senai.group1.appproject.appproject.models.SceneHandler;
 import javafx.beans.value.ChangeListener;
@@ -23,7 +24,7 @@ import java.util.ResourceBundle;
 
 
 
-public class Screen03SettingsController implements Initializable {
+public class Screen03SettingsController extends ScreenBaseController {
 
     @FXML
     private ImageView backgroundImageView;
@@ -42,6 +43,14 @@ public class Screen03SettingsController implements Initializable {
 
     @FXML
     private Slider volumeSlider;
+
+    public Screen03SettingsController(PreparedSceneModel model) {
+        super(model);
+    }
+
+    public Screen03SettingsController(Stage stage) {
+        super(stage);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

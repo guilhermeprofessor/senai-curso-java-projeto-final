@@ -1,6 +1,7 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
 import br.com.senai.group1.appproject.appproject.models.CharacterModel;
+import br.com.senai.group1.appproject.appproject.models.PreparedSceneModel;
 import br.com.senai.group1.appproject.appproject.models.ResolutionModel;
 import br.com.senai.group1.appproject.appproject.models.SceneHandler;
 import javafx.beans.value.ChangeListener;
@@ -23,7 +24,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class Screen05SelectPlayerController implements Initializable {
+public class Screen05SelectPlayerController extends ScreenBaseController {
 
     @FXML
     private Button backButton;
@@ -52,6 +53,14 @@ public class Screen05SelectPlayerController implements Initializable {
     private CharacterModel selectPlayer;
     private List<CharacterModel> playerList;
     private int playerIndex = 0;
+
+    public Screen05SelectPlayerController(PreparedSceneModel model) {
+        super(model);
+    }
+
+    public Screen05SelectPlayerController(Stage stage) {
+        super(stage);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

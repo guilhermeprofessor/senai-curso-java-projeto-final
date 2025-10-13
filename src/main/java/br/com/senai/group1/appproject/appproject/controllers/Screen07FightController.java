@@ -1,6 +1,7 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
 import br.com.senai.group1.appproject.appproject.models.CharacterModel;
+import br.com.senai.group1.appproject.appproject.models.PreparedSceneModel;
 import br.com.senai.group1.appproject.appproject.models.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +19,17 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 
-public class Screen07FightController implements Initializable {
+public class Screen07FightController extends ScreenBaseController {
+
+
+
+    public Screen07FightController(PreparedSceneModel model) {
+        super(model);
+    }
+
+    public Screen07FightController(Stage stage) {
+        super(stage);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

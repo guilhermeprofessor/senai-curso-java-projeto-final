@@ -1,5 +1,6 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
+import br.com.senai.group1.appproject.appproject.models.PreparedSceneModel;
 import br.com.senai.group1.appproject.appproject.models.SceneHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,7 +14,7 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Screen02MenuController implements Initializable {
+public class Screen02MenuController extends ScreenBaseController {
 
     @FXML
     private ImageView backgroundImageView;
@@ -33,6 +34,13 @@ public class Screen02MenuController implements Initializable {
     @FXML
     private StackPane container;
 
+    public Screen02MenuController(PreparedSceneModel model) {
+        super(model);
+    }
+
+    public Screen02MenuController(Stage stage) {
+        super(stage);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
