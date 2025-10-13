@@ -6,7 +6,7 @@
 }
 
 .screen-title {
-    -fx-text-fill:rgba(0,0,0,1);
+    -fx-text-fill:rgba(232,177,103,1);
     -fx-font-size:24px;
     -fx-font-weight:bold;
 }
@@ -18,7 +18,7 @@
 }
 
 .screen-credits-label {
-    -fx-text-fill:rgba(0,0,0,1);
+    -fx-text-fill:rgba(232,177,103,1);
     -fx-font-size:21px;
     -fx-font-weight:bold;
 }
@@ -30,9 +30,11 @@
     -fx-font-weight:bold;
 }
 .screen-credits-teams-name-label {
-    -fx-text-fill:rgba(0,0,0,1);
+    -fx-text-fill:rgba(232,177,103,1);
+    -fx-text-fill:rgba(240,201,149,1);
     -fx-font-size:17px;
-    -fx-font-weight:normal;
+    -fx-font-weight:bold;
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,1), 10, 0, 0, 0);
 }
 
 .button {
@@ -54,13 +56,24 @@
 }
 
 .button-arrow {
-    -fx-background-color:rgba(0,0,0,0);
-    -fx-text-fill:rgba(255,255,255,1);
+    -fx-background-color:rgba(232,177,103,1);
+    -fx-fill:rgba(60,30,14,1);
     -fx-font-size:17px;
     -fx-font-weight:bold;
     -fx-pref-width:30px;
     -fx-cursor:hand;
 }
+
 .button-arrow:hover {
-    -fx-background-color:gray;
+    -fx-background-color:rgba(60,30,14,1);
+    -fx-fill:rgba(232,177,103,1);
+}
+
+.button-arrow .button-icon {
+    -fx-fill:rgba(60,30,14,1);
+
+}
+
+.button-arrow:hover .button-icon{
+    -fx-fill:rgba(232,177,103,1);
 }

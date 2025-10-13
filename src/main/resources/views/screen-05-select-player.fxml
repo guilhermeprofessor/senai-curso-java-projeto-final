@@ -47,12 +47,12 @@
                   <ImageView fx:id="playerImageView" fitHeight="300.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowSpan="3" GridPane.valignment="CENTER" />
                   <Button fx:id="previousButton" mnemonicParsing="false" styleClass="button-arrow" GridPane.rowIndex="1">
                      <graphic>
-                        <FontAwesomeIcon glyphName="ARROW_LEFT" />
+                        <FontAwesomeIcon glyphName="ARROW_LEFT" styleClass="button-icon" />
                      </graphic>
                   </Button>
                   <Button fx:id="nextButton" mnemonicParsing="false" styleClass="button-arrow" GridPane.columnIndex="6" GridPane.rowIndex="1">
                      <graphic>
-                        <FontAwesomeIcon glyphName="ARROW_RIGHT" />
+                        <FontAwesomeIcon glyphName="ARROW_RIGHT" styleClass="button-icon" />
                      </graphic>
                   </Button>
                </children>

@@ -61,7 +61,10 @@
                 </Separator>
             <Label layoutX="622.0" layoutY="243.0" styleClass="screen-credits-label" text="Professor" />
             <Label layoutX="568.0" layoutY="284.0" styleClass="screen-credits-teams-name-label" text="Leonardo Gabriel" />
-            <Separator layoutX="10.0" layoutY="496.0" opacity="0.0" prefWidth="200.0" />
+            <Separator layoutX="10.0" layoutY="496.0" opacity="0.0" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin></Separator>
                 <Button fx:id="backButton" mnemonicParsing="false" text="Voltar" />
             </children>
         </VBox>
