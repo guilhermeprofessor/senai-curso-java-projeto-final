@@ -29,8 +29,8 @@ public class Screen05SelectPlayerController extends ScreenBaseController {
     @FXML
     private Button backButton;
 
-    @FXML
-    private ImageView backgroundImageView;
+//    @FXML
+//    private ImageView backgroundImageView;
 
     @FXML
     private StackPane container;
@@ -64,6 +64,7 @@ public class Screen05SelectPlayerController extends ScreenBaseController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         this.populatePlayerList();
 
 

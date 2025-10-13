@@ -26,8 +26,8 @@ public class Screen08CreditsController extends ScreenBaseController {
         super(stage);
     }
 
-    @FXML
-    private ImageView backgroundImageView;
+//    @FXML
+//    private ImageView backgroundImageView;
 
     @FXML
     private Rectangle backgroundFilterImageView;
@@ -51,8 +51,8 @@ public class Screen08CreditsController extends ScreenBaseController {
     public void recalculateBackgroundFilterDimensions() {
         this.backgroundFilterImageView.setX(0);
         this.backgroundFilterImageView.setY(0);
-        this.backgroundFilterImageView.setWidth(ScreenViewUtils.getScreenWidth());
-        this.backgroundFilterImageView.setHeight(ScreenViewUtils.getScreenHeight());
+        this.backgroundFilterImageView.widthProperty().bind(this.getScene().widthProperty());
+        this.backgroundFilterImageView.heightProperty().bind(this.getScene().heightProperty());
     }
 
     public void backButtonEvent() {

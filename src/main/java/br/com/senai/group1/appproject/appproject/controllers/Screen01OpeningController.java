@@ -1,5 +1,6 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
+import br.com.senai.group1.appproject.appproject.models.ImageViewUtils;
 import br.com.senai.group1.appproject.appproject.models.PreparedSceneModel;
 import br.com.senai.group1.appproject.appproject.models.SceneHandler;
 import javafx.fxml.FXML;
@@ -14,8 +15,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Screen01OpeningController extends ScreenBaseController {
-    @FXML
-    private ImageView backgroundImageView;
+//    @FXML
+//    private ImageView backgroundImageView;
 
     @FXML
     private StackPane container;
@@ -36,19 +37,9 @@ public class Screen01OpeningController extends ScreenBaseController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            Stage stage = this.getStage();
 
-
-            System.out.println(this.getScene().getWidth());
-            System.out.println(this.getScene().getHeight());
-            System.out.println(this.backgroundImageView.getFitWidth());
-            System.out.println(this.backgroundImageView.getFitHeight());
-
-            this.backgroundImageView.setFitWidth(stage.getWidth());
-            this.backgroundImageView.setFitHeight(stage.getHeight());
-        } catch(Exception ex) {
-            ex.printStackTrace();
-        }
     }
+
+
+
 }

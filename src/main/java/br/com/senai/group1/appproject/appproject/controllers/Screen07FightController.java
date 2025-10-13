@@ -33,7 +33,6 @@ public class Screen07FightController extends ScreenBaseController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
 }

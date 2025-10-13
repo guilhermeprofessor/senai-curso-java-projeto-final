@@ -26,8 +26,8 @@ import java.util.ResourceBundle;
 
 public class Screen03SettingsController extends ScreenBaseController {
 
-    @FXML
-    private ImageView backgroundImageView;
+//    @FXML
+//    private ImageView backgroundImageView;
 
     @FXML
     private Button backButton;
@@ -54,6 +54,7 @@ public class Screen03SettingsController extends ScreenBaseController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         this.populateResolutionMenu();
         this.configureVolumeSlider();
         this.configureSoundEffectsSlider();

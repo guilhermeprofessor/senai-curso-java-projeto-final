@@ -35,7 +35,8 @@ public class PreparedSceneModel {
 
         this.parent = this.fxmlLoader.load();
         this.scene.setRoot(this.parent);
-
+        this.getScreenBaseController().setScene(this.scene);
+        this.getScreenBaseController().resizeBackgroundImageByBind();
     }
 
     public FXMLLoader getFxmlLoader() {

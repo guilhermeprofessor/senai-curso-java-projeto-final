@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
 
 public class Screen02MenuController extends ScreenBaseController {
 
-    @FXML
-    private ImageView backgroundImageView;
+//    @FXML
+//    private ImageView backgroundImageView;
 
     @FXML
     private Button closeButton;
@@ -44,6 +44,7 @@ public class Screen02MenuController extends ScreenBaseController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
 
         this.closeButton.setOnAction((ActionEvent event) -> {
            this.closeButtonEvent();

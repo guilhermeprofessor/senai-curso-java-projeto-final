@@ -16,8 +16,8 @@ import java.util.ResourceBundle;
 
 
 public class Screen04TutorialController extends ScreenBaseController {
-    @FXML
-    private ImageView backgroundImageView;
+//    @FXML
+//    private ImageView backgroundImageView;
 
     @FXML
     private StackPane container;

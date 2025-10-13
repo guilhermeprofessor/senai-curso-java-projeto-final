@@ -1,8 +1,12 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
+import br.com.senai.group1.appproject.appproject.models.ImageViewUtils;
 import br.com.senai.group1.appproject.appproject.models.PreparedSceneModel;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -12,6 +16,8 @@ public abstract class ScreenBaseController implements Initializable {
     private Scene scene;
     private Stage stage;
     private PreparedSceneModel preparedSceneModel;
+
+    @FXML protected ImageView backgroundImageView;
 
     public ScreenBaseController(PreparedSceneModel model) {
         this(model.getStage());
@@ -34,6 +40,7 @@ public abstract class ScreenBaseController implements Initializable {
 
     public void setScene(Scene scene) {
         this.scene = scene;
+        this.stage.setScene(this.scene);
     }
 
     public Stage getStage() {
@@ -46,4 +53,12 @@ public abstract class ScreenBaseController implements Initializable {
 
     @Override
     public abstract void initialize(URL url, ResourceBundle resourceBundle);
+
+    public void resizeImageViewByScene(ImageView imageView, Scene scene) {
+        ImageViewUtils.resizeImageByBind(imageView, scene);
+    }
+
+    public void resizeBackgroundImageByBind() {
+        ImageViewUtils.resizeImageByBind(this.backgroundImageView, this.getScene());
+    }
 }
