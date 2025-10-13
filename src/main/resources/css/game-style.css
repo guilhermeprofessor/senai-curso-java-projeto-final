@@ -36,8 +36,10 @@
 }
 
 .button {
-    -fx-background-color:rgba(133,123,102,1);
-    -fx-text-fill:rgba(224,221,214,1);
+    /* -fx-background-color:rgba(133,123,102,1); */
+    /* -fx-text-fill:rgba(224,221,214,1);*/
+    -fx-background-color:rgba(232,177,103,1);
+    -fx-text-fill:rgba(60,30,14,1);
     -fx-font-size:17px;
     -fx-font-weight:bold;
     -fx-pref-width:230px;
