@@ -1,7 +1,8 @@
 .opening-game-course-title {
-    -fx-text-fill:rgba(0,0,0,1);
-    -fx-font-size:17px;
+    -fx-text-fill:rgba(210,169,77,1);
+    -fx-font-size:21px;
     -fx-font-weight:bold;
+    -fx-effect:dropshadow(three-pass-box, black, 5, 00, 1, 1);
 }
 
 .screen-title {
@@ -35,15 +36,19 @@
 }
 
 .button {
-    -fx-background-color:black;
-    -fx-text-fill:rgba(255,255,255,1);
+    -fx-background-color:rgba(133,123,102,1);
+    -fx-text-fill:rgba(224,221,214,1);
     -fx-font-size:17px;
     -fx-font-weight:bold;
     -fx-pref-width:230px;
     -fx-cursor:hand;
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,.2), 5, 0, 3, 3);
 }
 .button:hover {
-    -fx-background-color:gray;
+    /* -fx-background-color:rgba(127,84,72,1);*/
+    -fx-background-color:rgba(137,107,88,1);
+    /* -fx-background-color:rgba(127,84,72,1);*/
+    -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,1), 5, 0, 3, 3);
 }
 
 .button-arrow {
