@@ -98,7 +98,7 @@ public class Screen05SelectPlayerController implements Initializable {
         Scene scene = this.backButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen06Dialogs);
+        stage.setScene(SceneHandler.screen07Fight);
     }
 
     public void nextButtonEvent() {
