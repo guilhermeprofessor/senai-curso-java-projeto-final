@@ -16,19 +16,47 @@
          </image></ImageView>
       <VBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="720.0" prefWidth="1280.0" spacing="10.0">
          <children>
-            <Button fx:id="playButton" mnemonicParsing="false" text="Jogar">
+            <Button fx:id="playButton" mnemonicParsing="false" styleClass="button-image">
                <VBox.margin>
                   <Insets top="70.0" />
                </VBox.margin>
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/button-start-game-01.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button fx:id="settingsButton" mnemonicParsing="false" text="Configurações" />
-            <Button fx:id="creditsButton" mnemonicParsing="false" text="Créditos" />
+            <Button fx:id="settingsButton" mnemonicParsing="false" styleClass="button-image">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/button-settings-01.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+            <Button fx:id="creditsButton" mnemonicParsing="false" styleClass="button-image">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/button-credits-01.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Separator opacity="0.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="30.0" top="30.0" />
                </VBox.margin>
             </Separator>
-            <Button fx:id="closeButton" mnemonicParsing="false" text="Sair" />
+            <Button fx:id="closeButton" mnemonicParsing="false" styleClass="button-image">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/button-exit-03.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </children>
       </VBox>
    </children>

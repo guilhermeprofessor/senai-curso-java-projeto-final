@@ -68,13 +68,27 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Separator>
-            <Button fx:id="startButton" mnemonicParsing="false" text="Iniciar" />
+            <Button fx:id="startButton" mnemonicParsing="false" styleClass="button-image">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/button-next-01.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
             <Separator opacity="0.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets bottom="15.0" top="15.0" />
                </VBox.margin>
             </Separator>
-            <Button fx:id="backButton" mnemonicParsing="false" text="Voltar" />
+            <Button fx:id="backButton" mnemonicParsing="false" styleClass="button-image">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/button-previous-01.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
          </children>
       </VBox>
    </children>
