@@ -40,7 +40,18 @@
     -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,1), 10, 0, 0, 0);
 }
 
-.button {
+
+.button-image {
+    -fx-background-color:rgba(0,0,0,0);
+    -fx-text-fill:rgba(0,0,0,0);
+    -fx-cursor:hand;
+}
+.button-image:hover {
+    -fx-background-color:rgba(0,0,0,0);
+    -fx-text-fill:rgba(0,0,0,0);
+}
+
+.button-text {
     /* -fx-background-color:rgba(133,123,102,1); */
     /* -fx-text-fill:rgba(224,221,214,1);*/
     -fx-background-color:rgba(232,177,103,1);
@@ -51,7 +62,7 @@
     -fx-cursor:hand;
     -fx-effect:dropshadow(three-pass-box, rgba(0,0,0,.2), 5, 0, 3, 3);
 }
-.button:hover {
+.button-text:hover {
     /* -fx-background-color:rgba(127,84,72,1);*/
     -fx-background-color:rgba(137,107,88,1);
     /* -fx-background-color:rgba(127,84,72,1);*/
