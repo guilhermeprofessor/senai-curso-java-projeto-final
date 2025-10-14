@@ -52,6 +52,7 @@ public class Screen07FightController extends ScreenBaseController {
     private GridPane systemGridPane;
 
 
+    List<Button> actionButtonList = new ArrayList<>();
 
     public Screen07FightController(PreparedSceneModel model) {
         super(model);
@@ -63,6 +64,10 @@ public class Screen07FightController extends ScreenBaseController {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    }
+
+    public void populateButtonList() {
+
     }
 
 }
