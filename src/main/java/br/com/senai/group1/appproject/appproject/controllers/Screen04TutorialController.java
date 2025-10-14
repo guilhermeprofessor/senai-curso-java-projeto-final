@@ -24,6 +24,8 @@ public class Screen04TutorialController extends ScreenBaseController {
 
     @FXML
     private Button startButton;
+    @FXML
+    private Button backButton;
 
     public Screen04TutorialController(PreparedSceneModel model) {
         super(model);
@@ -39,6 +41,9 @@ public class Screen04TutorialController extends ScreenBaseController {
         this.startButton.setOnAction((ActionEvent event) -> {
             this.startButtonEvent();
         });
+        this.backButton.setOnAction((ActionEvent event) -> {
+            this.backButtonEvent();
+        });
 
     }
 
@@ -47,6 +52,13 @@ public class Screen04TutorialController extends ScreenBaseController {
         Stage stage = (Stage) scene.getWindow();
 
         stage.setScene(SceneHandler.screen05SelectPlayer);
+    }
+
+    public void backButtonEvent() {
+        Scene scene = this.startButton.getScene();
+        Stage stage = (Stage) scene.getWindow();
+
+        stage.setScene(SceneHandler.screen02Menu);
     }
 
 }
