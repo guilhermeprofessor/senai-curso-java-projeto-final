@@ -5,11 +5,7 @@ import br.com.senai.group1.appproject.appproject.models.ScreenViewUtils;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -20,9 +16,6 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-//        Parent root = FXMLLoader.load(getClass().getResource(ScreenViewUtils.SCREEN_01_OPENING_FXML));
-//        String classe = getClass();
-
         ScreenViewUtils.setScreenWidth(1280);
         ScreenViewUtils.setScreenHeight(720);
 
@@ -50,8 +43,8 @@ public class MainApplication extends Application {
 
         delayToLoadNextScreen.setOnFinished((ActionEvent event) -> {
             try {
-                stage.setScene(SceneHandler.screen02Menu);
-//                stage.setScene(SceneHandler.screen05SelectPlayer);
+//                stage.setScene(SceneHandler.screen02Menu);
+                stage.setScene(SceneHandler.screen07Fight);
             } catch(Exception ex) {
                 ex.printStackTrace();
             }
