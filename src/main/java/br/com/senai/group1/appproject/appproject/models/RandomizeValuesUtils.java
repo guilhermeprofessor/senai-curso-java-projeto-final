@@ -1,33 +1,38 @@
 package br.com.senai.group1.appproject.appproject.models;
 
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+import javafx.scene.layout.GridPane;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class RandomizeValuesUtils {
 
-    public static int[] RandomUnrepeatedPosition(int limit)
+    public static int[] randomUnrepeatedPosition(int limit)
     {
-        List<Integer> numberList = new ArrayList<>();
+        int[] numberList = new int[limit];
 
         for (int i = 0; i < limit; i++)
         {
-            numberList.add(i + 1);
+            numberList[i]=(i + 1);
         }
 
         Random random = new Random();
 
-        int[] newList = new int[numberList.size()];
+        int[] newList = new int[numberList.length];
 
         boolean alreadyRegistered;
         int randomizedPosition = -1;
         int valueToRegister = -2;
 
         List<Integer> indexUnregistered;
+        int[] indexUnregisteredList;
 
         while (valueToRegister != -1)
         {
-            alreadyRegistered = false;
             indexUnregistered = new ArrayList<>();
             valueToRegister = -1;
 
@@ -39,10 +44,15 @@ public class RandomizeValuesUtils {
                 }
             }
 
+            int lastNumber1 = -1;
+            int lastNumber2 = -1;
             for (int number : numberList)
             {
+                alreadyRegistered = false;
+                lastNumber1 = number;
                 for (int i : newList)
                 {
+                    lastNumber2 = i;
                     if (number == i)
                     {
                         alreadyRegistered = true;
@@ -57,9 +67,10 @@ public class RandomizeValuesUtils {
                 }
             }
 
+
             while(valueToRegister != -1)
             {
-                randomizedPosition = random.nextInt(numberList.size());
+                randomizedPosition = random.nextInt(numberList.length);
 
                 if (newList[randomizedPosition] < 1)
                 {
@@ -71,5 +82,40 @@ public class RandomizeValuesUtils {
         }
 
         return newList;
+    }
+
+    public static Pos randomizePosEnumValue() {
+        Pos[] posList = Pos.values();
+        Random random = new Random();
+        int selectedValue = random.nextInt(posList.length);
+
+        System.out.println("------------------");
+        System.out.println(selectedValue+ ": " + posList[selectedValue]);
+        System.out.println("------------------");
+
+        return posList[selectedValue];
+    }
+
+    public static HPos randomizeHPosEnumValue() {
+        HPos[] posList = HPos.values();
+        Random random = new Random();
+        int selectedValue = random.nextInt(posList.length);
+
+        System.out.println("------------------");
+        System.out.println(selectedValue+ ": " + posList[selectedValue]);
+        System.out.println("------------------");
+
+        return posList[selectedValue];
+    }
+    public static VPos randomizeVPosEnumValue() {
+        VPos[] posList = VPos.values();
+        Random random = new Random();
+        int selectedValue = random.nextInt(posList.length);
+
+        System.out.println("------------------");
+        System.out.println(selectedValue+ ": " + posList[selectedValue]);
+        System.out.println("------------------");
+
+        return posList[selectedValue];
     }
 }
