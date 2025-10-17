@@ -39,7 +39,7 @@ public class MainApplication extends Application {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.show();
 
-        PauseTransition delayToLoadNextScreen = new PauseTransition(Duration.seconds(3));
+        PauseTransition delayToLoadNextScreen = new PauseTransition(Duration.seconds(1));
 
         delayToLoadNextScreen.setOnFinished((ActionEvent event) -> {
             try {
