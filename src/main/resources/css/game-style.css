@@ -1,4 +1,12 @@
+@font-face {
+    font-family: "PressStart2P-Regular";
+    src: url("../fonts/PressStart2P-Regular.ttf");
+    font-weight:normal;
+    font-style:normal;
+}
+
 .opening-game-course-title {
+    -fx-font-family:"PressStart2P-Regular";
     -fx-text-fill:rgba(210,169,77,1);
     -fx-font-size:21px;
     -fx-font-weight:bold;
@@ -6,6 +14,7 @@
 }
 
 .screen-title {
+    -fx-font-family:"PressStart2P-Regular";
     -fx-text-fill:rgba(240,201,149,1);
     -fx-effect:dropshadow(three-pass-box, black, 5, 00, 1, 1);
     -fx-font-size:24px;
@@ -13,6 +22,7 @@
 }
 
 .screen-label {
+    -fx-font-family:"PressStart2P-Regular";
     -fx-text-fill:rgba(240,201,149,1);
     -fx-effect:dropshadow(three-pass-box, black, 5, 00, 1, 1);
     -fx-font-size:17px;
@@ -20,6 +30,7 @@
 }
 
 .screen-credits-label {
+    -fx-font-family:"PressStart2P-Regular";
     -fx-text-fill:rgba(232,177,103,1);
     -fx-font-size:21px;
     -fx-font-weight:bold;
@@ -27,12 +38,14 @@
 
 
 .screen-controller-label {
+    -fx-font-family:"PressStart2P-Regular";
     -fx-text-fill:rgba(240,201,149,1);
     -fx-font-size:14px;
     -fx-font-weight:bold;
     -fx-effect:dropshadow(three-pass-box, black, 5, 00, 1, 1);
 }
 .screen-credits-teams-name-label {
+    -fx-font-family:"PressStart2P-Regular";
     -fx-text-fill:rgba(232,177,103,1);
     -fx-text-fill:rgba(240,201,149,1);
     -fx-font-size:17px;
@@ -66,8 +79,13 @@
     -fx-text-fill:rgba(0,0,0,0);
 }
 
+.button-action-image:disabled .action-used {
+    -fx-effect:innershadow(gaussian, rgba(0,0,0,.5), 100, 100, 0, 0);
+}
+
 
 .button-text {
+    -fx-font-family:"PressStart2P-Regular";
     /* -fx-background-color:rgba(133,123,102,1); */
     /* -fx-text-fill:rgba(224,221,214,1);*/
     -fx-background-color:rgba(232,177,103,1);
