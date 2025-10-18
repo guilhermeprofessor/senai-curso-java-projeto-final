@@ -35,7 +35,7 @@ public class ActionButtonUtils {
             button.setDisable(true);
         }
 
-        long delayTime = System.nanoTime() + 500_000_000l;
+        long delayTime = System.nanoTime() + 1_500_000_000l;
         (new AnimationTimer() {
             @Override
             public void handle(long now) {
@@ -89,59 +89,68 @@ public class ActionButtonUtils {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
 
-            AnchorPane sceneAnchorPane = ((AnchorPane) scenePane);
-            ImageView targetView = otherCharacter.getCharacterImaveView();
+//            AnchorPane sceneAnchorPane = ((AnchorPane) scenePane);
+//            ImageView targetView = otherCharacter.getCharacterImaveView();
 
             // carrega imagem do ataque do player no system
-            Image areaSystemImage = ImageUtils.loadInputStream("/images/action-area-effect.png");
-            ImageView systemImageView = new ImageView(areaSystemImage);
-            systemImageView.setFitWidth(targetView.getFitWidth());
-            systemImageView.setFitHeight(targetView.getFitHeight());
-            AnchorPane.setBottomAnchor(systemImageView, AnchorPane.getBottomAnchor(targetView));
-            AnchorPane.setRightAnchor(systemImageView, AnchorPane.getRightAnchor(targetView) - targetView.getFitWidth()/2);
+//            Image areaSystemImage = ImageUtils.loadInputStream("/images/action-area-effect.png");
+//            ImageView systemImageView = new ImageView(areaSystemImage);
+//            systemImageView.setFitWidth(targetView.getFitWidth());
+//            systemImageView.setFitHeight(targetView.getFitHeight());
+//            AnchorPane.setBottomAnchor(systemImageView, AnchorPane.getBottomAnchor(targetView));
+//            AnchorPane.setRightAnchor(systemImageView, AnchorPane.getRightAnchor(targetView) - targetView.getFitWidth()/2);
 
 
 
+            mainCharacter.setCurrentState(AnimationStateEnum.ATTACK);
 
             AnimationUtils.executeAfterTime(500,() -> {
-                sceneAnchorPane.getChildren().add(systemImageView);
+//                sceneAnchorPane.getChildren().add(systemImageView);
                 otherCharacter.getStatusLabel().setTextFill(Color.RED);
 
                 otherCharacter.getStatusLabel().setText("-"+((int)mainCharacter.getAttackPower())+"");
             });
             AnimationUtils.executeAfterTime(1000,() -> {
-                sceneAnchorPane.getChildren().remove(systemImageView);
+//                sceneAnchorPane.getChildren().remove(systemImageView);
 
                 otherCharacter.getStatusLabel().setText("");
             });
         });
     }
 
-    public static void setActionToDefenseButton(Button button, int delayTime) {
+    public static void setActionToDefenseButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, CharacterModel otherCharacter) {
 
         button.setOnAction((ActionEvent event) -> {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
+
+            mainCharacter.setCurrentState(AnimationStateEnum.DEFENSE);
         });
     }
 
-    public static void setActionToEnergyButton(Button button, int delayTime) {
+    public static void setActionToEnergyButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, CharacterModel otherCharacter) {
 
         button.setOnAction((ActionEvent event) -> {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
+
+            mainCharacter.setCurrentState(AnimationStateEnum.ENERGY);
         });
     }
 
-    public static void setActionToDodgeButton(Button button, int delayTime) {
+    public static void setActionToDodgeButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, CharacterModel otherCharacter) {
 
         button.setOnAction((ActionEvent event) -> {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
+
+            mainCharacter.setCurrentState(AnimationStateEnum.DODGE);
         });
     }
 
-    public static void setActionToSpecialPowerButton(Button button, int delayTime) {
+    public static void setActionToSpecialPowerButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, CharacterModel otherCharacter) {
 
         button.setOnAction((ActionEvent event) -> {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
+
+            mainCharacter.setCurrentState(AnimationStateEnum.SPECIAL_POWER);
         });
     }
 

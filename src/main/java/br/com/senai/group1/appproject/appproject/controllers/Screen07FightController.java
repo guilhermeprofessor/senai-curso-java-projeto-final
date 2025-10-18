@@ -74,6 +74,7 @@ public class Screen07FightController extends ScreenBaseController {
     }
 
     public long elapsedTime = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.clearStatusLabelText();
@@ -82,24 +83,31 @@ public class Screen07FightController extends ScreenBaseController {
         this.fillSystemCharacterModel();
 
         this.populateActionButtonList();
+
         ActionButtonUtils.setActionToAttackButton(this.actionAttackButton, 3500, this.scenePane, this.playerModel, this.systemModel);
-        ActionButtonUtils.setActionToDefenseButton(this.actionDefenseButton, 3500);
-        ActionButtonUtils.setActionToEnergyButton(this.actionEnergyButton, 2500);
-        ActionButtonUtils.setActionToDodgeButton(this.actionDodgeButton, 1500);
-        ActionButtonUtils.setActionToSpecialPowerButton(this.actionSpecialPowerButton, 10000);
+
+        ActionButtonUtils.setActionToDefenseButton(this.actionDefenseButton, 3500, this.scenePane, this.playerModel, this.systemModel);
+        ActionButtonUtils.setActionToEnergyButton(this.actionEnergyButton, 2500, this.scenePane, this.playerModel, this.systemModel);
+        ActionButtonUtils.setActionToDodgeButton(this.actionDodgeButton, 1500, this.scenePane, this.playerModel, this.systemModel);
+        ActionButtonUtils.setActionToSpecialPowerButton(this.actionSpecialPowerButton, 10000, this.scenePane, this.playerModel, this.systemModel);
+
+        this.playerModel.loadImageFromSpriteList();
 
 
+        this.playerModel.playSpriteAnimation();
 
     }
 
     private void fillPlayerCharacterModel() {
-        this.playerModel = new CharacterModel("Player 01", "/images/player_peq.png");
+        this.playerModel = new PlayerCharacterModel("Player 01", "/images/player_peq.png");
         this.playerModel.setCharacterImaveView(this.playerImageView);
         this.playerModel.setStatusLabel(this.playerStatusText);
 
+        this.playerModel.loadImageFromSpriteList();
+
     }
     private void fillSystemCharacterModel() {
-        this.systemModel = new CharacterModel("System", "/images/player_peq.png");
+        this.systemModel = new PlayerCharacterModel("System", "/images/player_peq.png");
         this.systemModel.setCharacterImaveView(this.systemImageView);
         this.systemModel.setStatusLabel(this.systemStatusText);
     }
