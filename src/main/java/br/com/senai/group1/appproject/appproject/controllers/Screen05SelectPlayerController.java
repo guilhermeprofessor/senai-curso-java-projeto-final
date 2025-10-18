@@ -1,9 +1,6 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
-import br.com.senai.group1.appproject.appproject.models.CharacterModel;
-import br.com.senai.group1.appproject.appproject.models.PreparedSceneModel;
-import br.com.senai.group1.appproject.appproject.models.ResolutionModel;
-import br.com.senai.group1.appproject.appproject.models.SceneHandler;
+import br.com.senai.group1.appproject.appproject.models.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -88,9 +85,9 @@ public class Screen05SelectPlayerController extends ScreenBaseController {
 
     private void populatePlayerList() {
         this.playerList = new ArrayList<>();
-        CharacterModel player01 = new CharacterModel("player 01", "");
-        CharacterModel player02 = new CharacterModel("player 02", "");
-        CharacterModel player03 = new CharacterModel("player 03", "");
+        CharacterModel player01 = new PlayerCharacterModel("player 01", "");
+        CharacterModel player02 = new PlayerCharacterModel("player 02", "");
+        CharacterModel player03 = new PlayerCharacterModel("player 03", "");
 
         this.playerList.add(player01);
         this.playerList.add(player02);
