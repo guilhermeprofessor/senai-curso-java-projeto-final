@@ -1,13 +1,25 @@
 package br.com.senai.group1.appproject.appproject.models;
 
+import javafx.animation.AnimationTimer;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class CharacterModel {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+public abstract class CharacterModel {
     private String name;
     private String imageUri;
     private Label statusLabel;
+
     private ImageView characterImaveView;
+    private Image currentSpriteImage;
+    private AnimationStateEnum currentState;
+    private int currentSriteIndex = 0;
+    private AnimationTimer spriteAnimationTimer;
+    private long elapsedTime = 0;
 
     private double healthPower = 1000;
     private double currentHealthPower = 1000;
@@ -20,9 +32,124 @@ public class CharacterModel {
     private double specialPower = 300;
     private double energyRecovery = 30;
 
+    private HashMap<AnimationStateEnum, List<String>> spriteList = new HashMap<>();
+    private HashMap<AnimationStateEnum, List<Image>> imageList = new HashMap<>();
+    private HashMap<AnimationStateEnum, int[]> spriteSequenceList = new HashMap<>();
+
     public CharacterModel(String name, String imageUri) {
         this.name = name;
         this.imageUri = imageUri;
+
+        this.fillAnimationSpriteList();
+        this.fillSpriteSequenceList();
+    }
+
+    public void loadImageFromSpriteList() {
+        this.imageList = new HashMap<>();
+
+        for(AnimationStateEnum enumValue : this.spriteList.keySet()) {
+            List<Image> imageList = new ArrayList<>();
+            for(String uri : this.spriteList.get(enumValue)) {
+                Image image = ImageUtils.loadInputStream(uri);
+
+                if(image == null) continue;
+
+                imageList.add(image);
+            }
+
+            this.imageList.put(enumValue, imageList);
+        }
+        System.out.println(this.imageList.size());
+    }
+
+    public void playSpriteAnimation() {
+        if(this.spriteAnimationTimer != null) this.spriteAnimationTimer.stop();
+
+        long animationDelay = (long) ((float)(.1 ) * 1_000_000_000l);
+        this.elapsedTime = 0L;
+        this.spriteAnimationTimer =  new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if(elapsedTime > now) return;
+
+                elapsedTime = now + animationDelay;
+
+                List<Image> animationSpriteList = imageList.get(currentState);
+
+                System.out.println(animationSpriteList);
+
+                if(animationSpriteList == null) return;
+
+                currentSriteIndex ++;
+
+                if(currentSriteIndex >= spriteSequenceList.get(currentState).length) {
+                    currentSriteIndex = 0;
+                    currentState = AnimationStateEnum.IDLE;
+                }
+
+                int spriteIndex = spriteSequenceList.get(currentState)[currentSriteIndex];
+
+                currentSpriteImage = animationSpriteList.get(spriteIndex);
+                characterImaveView.setImage(currentSpriteImage);
+            }
+        };
+
+        this.spriteAnimationTimer.start();
+    }
+
+    public abstract void fillAnimationSpriteList();
+
+    public abstract void fillSpriteSequenceList();
+
+    public HashMap<AnimationStateEnum, int[]> getSpriteSequenceList() {
+        return spriteSequenceList;
+    }
+
+    public void setSpriteSequenceList(HashMap<AnimationStateEnum, int[]> spriteSequenceList) {
+        this.spriteSequenceList = spriteSequenceList;
+    }
+
+    public void setImageList(HashMap<AnimationStateEnum, List<Image>> imageList) {
+        this.imageList = imageList;
+    }
+
+    public void setSpriteList(HashMap<AnimationStateEnum, List<String>> spriteList) {
+        this.spriteList = spriteList;
+    }
+
+    public AnimationStateEnum getCurrentState() {
+        return currentState;
+    }
+
+    public void setCurrentState(AnimationStateEnum currentState) {
+        this.currentSriteIndex = 0;
+        this.currentState = currentState;
+    }
+
+    public Image getCurrentSpriteImage() {
+        return currentSpriteImage;
+    }
+
+    public void setCurrentSpriteImage(Image currentSpriteImage) {
+        if(currentSpriteImage == null) return;
+
+        this.currentSpriteImage = currentSpriteImage;
+    }
+
+    public HashMap<AnimationStateEnum, List<Image>> getImageList() {
+        return imageList;
+    }
+
+    public double getCurrentHealthPower() {
+        return currentHealthPower;
+    }
+
+    public double getCurrentStaminaPower() {
+        return currentStaminaPower;
+    }
+
+    public HashMap<AnimationStateEnum, List<String>> getSpriteList() {
+        return spriteList;
     }
 
     public double getHealthPower() {
