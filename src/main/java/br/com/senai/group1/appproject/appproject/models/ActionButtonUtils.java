@@ -103,6 +103,7 @@ public class ActionButtonUtils {
 
 
             mainCharacter.setCurrentState(AnimationStateEnum.ATTACK);
+            otherCharacter.setCurrentState(AnimationStateEnum.ATTACK);
 
             AnimationUtils.executeAfterTime(500,() -> {
 //                sceneAnchorPane.getChildren().add(systemImageView);
@@ -124,6 +125,7 @@ public class ActionButtonUtils {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
             mainCharacter.setCurrentState(AnimationStateEnum.DEFENSE);
+            otherCharacter.setCurrentState(AnimationStateEnum.DEFENSE);
         });
     }
 
@@ -133,6 +135,7 @@ public class ActionButtonUtils {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
             mainCharacter.setCurrentState(AnimationStateEnum.ENERGY);
+            otherCharacter.setCurrentState(AnimationStateEnum.ENERGY);
         });
     }
 
@@ -142,6 +145,7 @@ public class ActionButtonUtils {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
             mainCharacter.setCurrentState(AnimationStateEnum.DODGE);
+            otherCharacter.setCurrentState(AnimationStateEnum.DODGE);
         });
     }
 
@@ -151,6 +155,7 @@ public class ActionButtonUtils {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
             mainCharacter.setCurrentState(AnimationStateEnum.SPECIAL_POWER);
+            otherCharacter.setCurrentState(AnimationStateEnum.SPECIAL_POWER);
         });
     }
 
