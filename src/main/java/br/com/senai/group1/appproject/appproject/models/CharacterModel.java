@@ -21,6 +21,7 @@ public abstract class CharacterModel {
     private AnimationTimer spriteAnimationTimer;
     private long elapsedTime = 0;
 
+
     private double healthPower = 1000;
     private double currentHealthPower = 1000;
     private double staminaPower = 300;
@@ -59,7 +60,7 @@ public abstract class CharacterModel {
 
             this.imageList.put(enumValue, imageList);
         }
-        System.out.println(this.imageList.size());
+
     }
 
     public void playSpriteAnimation() {
@@ -75,8 +76,6 @@ public abstract class CharacterModel {
                 elapsedTime = now + animationDelay;
 
                 List<Image> animationSpriteList = imageList.get(currentState);
-
-                System.out.println(animationSpriteList);
 
                 if(animationSpriteList == null) return;
 
@@ -100,6 +99,24 @@ public abstract class CharacterModel {
     public abstract void fillAnimationSpriteList();
 
     public abstract void fillSpriteSequenceList();
+
+    public double getHealthPowerPercent() {
+        double percent = this.currentHealthPower / this.healthPower;
+        if(percent < 0) return 0;
+        if(percent > 1) return 1;
+
+        return percent;
+    }
+
+    public double getStaminaPowerPercent() {
+        double percent = this.currentStaminaPower / this.staminaPower;
+
+        if(percent < 0) return 0;
+        if(percent > 1) return 1;
+
+        return percent;
+    }
+
 
     public HashMap<AnimationStateEnum, int[]> getSpriteSequenceList() {
         return spriteSequenceList;
