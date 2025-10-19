@@ -25,6 +25,13 @@ public class PlayerCharacterModel extends CharacterModel {
 
 
 
+        List<String> damageSpriteList = new ArrayList<>();
+        map.put(AnimationStateEnum.DAMAGE, damageSpriteList);
+
+        damageSpriteList.add("/images/animations/player_damage_01.png");
+        damageSpriteList.add("/images/animations/player_damage_02.png");
+
+
         List<String> defenseSpriteList = new ArrayList<>();
         map.put(AnimationStateEnum.DEFENSE, defenseSpriteList);
 
