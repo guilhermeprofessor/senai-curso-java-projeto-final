@@ -94,14 +94,22 @@ public class Screen05SelectPlayerController extends ScreenBaseController {
         Scene scene = this.backButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen04Tutorial);
+        stage.setScene(SceneHandler.screen04TutorialModel.getScene());
     }
 
     public void startButtonEvent() {
+        String name = this.nameTextField.getText();
+        AppSettings.setPlayerName(name);
+
         Scene scene = this.backButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen07Fight);
+        Screen07FightController controller =
+                ((Screen07FightController)SceneHandler.screen07FightModel.getController());
+        controller.playerModel.setName(AppSettings.getPlayerName());
+        controller.getPlayerNameLabel().setText(AppSettings.getPlayerName());
+        controller.getSystemNameLabel().setText("Valentão");
+        stage.setScene(SceneHandler.screen07FightModel.getScene());
     }
 
     public void nextButtonEvent() {
