@@ -4,6 +4,7 @@ module br.com.senai.group1.appproject.appproject {
     requires javafx.graphics;
     requires java.desktop;
     requires jdk.compiler;
+    requires fontawesomefx;
 
 
     opens br.com.senai.group1.appproject.appproject to javafx.fxml;
