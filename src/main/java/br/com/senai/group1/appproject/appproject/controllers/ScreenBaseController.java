@@ -19,6 +19,10 @@ public abstract class ScreenBaseController implements Initializable {
 
     @FXML protected ImageView backgroundImageView;
 
+    private boolean isItReleaseAnimationTimers = false;
+
+
+
     public ScreenBaseController(PreparedSceneModel model) {
         this(model.getStage());
         this.preparedSceneModel = model;
@@ -60,5 +64,13 @@ public abstract class ScreenBaseController implements Initializable {
 
     public void resizeBackgroundImageByBind() {
         ImageViewUtils.resizeImageByBind(this.backgroundImageView, this.getScene());
+    }
+
+    public boolean getIsItReleaseAnimationTimers() {
+        return this.isItReleaseAnimationTimers;
+    }
+
+    public void setItReleaseAnimationTimers(boolean itReleaseAnimationTimers) {
+        this.isItReleaseAnimationTimers = itReleaseAnimationTimers;
     }
 }

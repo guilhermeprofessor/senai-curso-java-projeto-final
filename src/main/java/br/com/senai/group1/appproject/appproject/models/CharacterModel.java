@@ -108,6 +108,11 @@ public abstract class CharacterModel {
         this.changeAnimationStateAnimationTimer.start();
     }
 
+    public void stopAllAnimationTimers() {
+        this.changeAnimationStateAnimationTimer.stop();
+        this.spriteAnimationTimer.stop();
+    }
+
     public void playSpriteAnimation() {
         if (this.spriteAnimationTimer != null) this.spriteAnimationTimer.stop();
 
