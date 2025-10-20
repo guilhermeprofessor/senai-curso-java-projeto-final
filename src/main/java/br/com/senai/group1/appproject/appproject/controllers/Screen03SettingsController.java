@@ -66,14 +66,14 @@ public class Screen03SettingsController extends ScreenBaseController {
         Screen screen = Screen.getPrimary();
         Rectangle2D rectangle = screen.getBounds();
 
-        System.out.println(rectangle.getWidth() + ":" + rectangle.getHeight());
     }
 
     public void populateResolutionMenu() {
         ResolutionModel[] resolutionList = {
             new ResolutionModel("1920 x 1080 (Full HD)",1920,1080),
+            new ResolutionModel("1600 x 900",1600,900),
+            new ResolutionModel("1366 x 768",1366,768),
             new ResolutionModel("1280 x 720 (HD)",1280,720),
-            new ResolutionModel("1014 x 570",1014,570)
         };
 
         for (ResolutionModel resolution : resolutionList) {
@@ -113,7 +113,7 @@ public class Screen03SettingsController extends ScreenBaseController {
         Scene scene = this.backButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen02Menu);
+        stage.setScene(SceneHandler.screen02MenuModel.getScene());
     }
 
     public void configureVolumeSlider() {
@@ -127,7 +127,6 @@ public class Screen03SettingsController extends ScreenBaseController {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
                 double value = newValue.doubleValue();
-                System.out.println(value);
             }
         });
     }
@@ -143,7 +142,6 @@ public class Screen03SettingsController extends ScreenBaseController {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
                 double value = newValue.doubleValue();
-                System.out.println(value);
             }
         });
     }
