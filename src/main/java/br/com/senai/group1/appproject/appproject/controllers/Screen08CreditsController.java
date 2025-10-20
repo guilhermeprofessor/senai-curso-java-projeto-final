@@ -59,7 +59,7 @@ public class Screen08CreditsController extends ScreenBaseController {
         Scene scene = this.backButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen02Menu);
+        stage.setScene(SceneHandler.screen02MenuModel.getScene());
     }
 
 }

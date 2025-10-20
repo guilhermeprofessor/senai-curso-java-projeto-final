@@ -51,14 +51,14 @@ public class Screen04TutorialController extends ScreenBaseController {
         Scene scene = this.startButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen05SelectPlayer);
+        stage.setScene(SceneHandler.screen05SelectPlayerModel.getScene());
     }
 
     public void backButtonEvent() {
         Scene scene = this.startButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen02Menu);
+        stage.setScene(SceneHandler.screen02MenuModel.getScene());
     }
 
 }
