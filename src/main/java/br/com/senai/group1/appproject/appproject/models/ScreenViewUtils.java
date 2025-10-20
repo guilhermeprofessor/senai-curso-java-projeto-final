@@ -13,6 +13,8 @@ public class ScreenViewUtils {
     public static final String SCREEN_06_DIALOGS_FXML = "/views/screen-06-dialogs.fxml";
     public static final String SCREEN_07_FIGHT_FXML = "/views/screen-07-fight.fxml";
     public static final String SCREEN_08_CREDITS_FXML = "/views/screen-08-credits.fxml";
+    public static final String SCREEN_09_END_GAME_FXML = "/views/screen-09-end-game.fxml";
+    public static final String SCREEN_10_THANKSGIVING_FXML = "/views/screen-10-thanksgiving.fxml";
 
     private static double screenWidth = 0;
     private static double screenHeight = 0;
