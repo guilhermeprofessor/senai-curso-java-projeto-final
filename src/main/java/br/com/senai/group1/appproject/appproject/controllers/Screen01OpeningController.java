@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -38,8 +39,8 @@ public class Screen01OpeningController extends ScreenBaseController {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        SceneHandler.loadAllSceneExceptTheOpeningScene();
     }
-
 
 
 }
