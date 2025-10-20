@@ -2,7 +2,9 @@ package br.com.senai.group1.appproject.appproject.controllers;
 
 import br.com.senai.group1.appproject.appproject.models.*;
 import javafx.animation.AnimationTimer;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -42,6 +44,9 @@ public class Screen07FightController extends ScreenBaseController {
     @FXML
     private AnchorPane scenePane;
 
+    @FXML
+    private Button exitAppButton;
+
 
     @FXML
     private AnchorPane hudPlayerAnchorPane;
@@ -65,6 +70,9 @@ public class Screen07FightController extends ScreenBaseController {
     private ImageView playerImageView;
 
     @FXML
+    private Label playerNameLabel;
+
+    @FXML
     private Rectangle playerSPBackgroundRect;
 
     @FXML
@@ -72,6 +80,7 @@ public class Screen07FightController extends ScreenBaseController {
 
     @FXML
     private Label playerStatusText;
+
 
 
     @FXML
@@ -87,6 +96,9 @@ public class Screen07FightController extends ScreenBaseController {
     private ImageView systemImageView;
 
     @FXML
+    private Label systemNameLabel;
+
+    @FXML
     private Rectangle systemSPBackgroundRect;
 
     @FXML
@@ -100,9 +112,13 @@ public class Screen07FightController extends ScreenBaseController {
     List<GridPane> gridPaneList = new ArrayList<>();
     int[] gridPanelOrderList = null;
     long hudElapsedTime = 0;
+    long mainLoopElpasedTime = 0;
+    AnimationTimer mainLoopAnimationTimer = null;
 
     public CharacterModel playerModel;
     public SystemCharacterModel systemModel;
+
+    public GameStateEnum isPlayerWinState = GameStateEnum.UNDEFINED;
 
     public Screen07FightController(PreparedSceneModel model) {
         super(model);
@@ -117,6 +133,11 @@ public class Screen07FightController extends ScreenBaseController {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.clearStatusLabelText();
+
+        this.exitAppButton.setOnAction((ActionEvent event) -> {
+            this.exitAppButtonEvent();
+        });
+
 
         this.fillPlayerCharacterModel();
         this.fillSystemCharacterModel();
@@ -137,6 +158,15 @@ public class Screen07FightController extends ScreenBaseController {
         this.playerModel.playSpriteAnimation();
         this.systemModel.playSpriteAnimation();
         this.animationHudDisplays();
+        this.mainLoop();
+    }
+
+    public void exitAppButtonEvent() {
+        Screen10ThanksgivingController controller =
+                (Screen10ThanksgivingController)  SceneHandler.screen10ThanksgivingModel.getController();
+
+        controller.setCanItStopApp(true);
+        SceneHandler.getCurrentStage().setScene(SceneHandler.screen10ThanksgivingModel.getScene());
     }
 
     private void fillPlayerCharacterModel() {
@@ -155,7 +185,7 @@ public class Screen07FightController extends ScreenBaseController {
         this.playerModel.setDefensePower(270);
         this.playerModel.setDodgeValue(150);
         this.playerModel.setEnergyRecovery(300);
-        this.playerModel.setSpecialPower(1000);
+        this.playerModel.setSpecialPower(10000);
 
 
 
@@ -173,7 +203,7 @@ public class Screen07FightController extends ScreenBaseController {
         this.systemModel.setHealthPower(5000);
         this.systemModel.setStaminaPower(300);
 
-        this.systemModel.setAttackPower(350);
+        this.systemModel.setAttackPower(3500);
         this.systemModel.setDefensePower(270);
         this.systemModel.setDodgeValue(150);
         this.systemModel.setEnergyRecovery(30);
@@ -220,6 +250,27 @@ public class Screen07FightController extends ScreenBaseController {
                 playerSPForegroundRect.setWidth(playerSpHUDWidth);
                 systemSPForegroundRect.setWidth(systemSpHUDWidth);
 
+                if(getIsItReleaseAnimationTimers()) {
+                    this.stop();
+                }
+            }
+        };
+
+        animationTimer.start();
+
+    }
+
+    public void mainLoop() {
+        this.mainLoopElpasedTime = 0;
+
+        this.mainLoopAnimationTimer = new AnimationTimer() {
+
+            @Override
+            public void handle(long now) {
+                if(mainLoopElpasedTime > now) return;
+
+                mainLoopElpasedTime = now + 300_000_000l;
+
                 if(playerModel.getCurrentState() == AnimationStateEnum.IDLE) {
                     playerModel.changeStamina(-1 * AnimationStateStaminaCostEnum.IDLE.getCost());
                 }
@@ -237,15 +288,46 @@ public class Screen07FightController extends ScreenBaseController {
                     systemModel.changeStamina(systemModel.getEnergyRecovery());
                     systemModel.changeHealth(systemModel.getEnergyRecovery() / 2);
                 }
+
+                if(systemModel.getCurrentHealthPower() <= 0) {
+                    isPlayerWinState = GameStateEnum.PLAYER_WIN;
+
+                } else if(playerModel.getCurrentHealthPower() <= 0) {
+                    isPlayerWinState = GameStateEnum.PLAYER_LOST;
+                }
+
+                goToEndGameScene();
+                if(getIsItReleaseAnimationTimers()) {
+                    this.stop();
+                }
             }
         };
-
-        animationTimer.start();
+        this.mainLoopAnimationTimer.start();
 
     }
 
 
 
+    public void goToEndGameScene() {
+        if(isPlayerWinState != GameStateEnum.PLAYER_WIN && isPlayerWinState != GameStateEnum.PLAYER_LOST) return;
+
+        AppSettings.setIsPlayerWin(this.isPlayerWinState);
+        this.mainLoopAnimationTimer.stop();
+
+        this.playerModel.stopAllAnimationTimers();
+        this.systemModel.stopAllAnimationTimers();
+
+        SceneHandler.getCurrentStage().setScene(SceneHandler.screen09EndGameModel.getScene());
+
+        this.setItReleaseAnimationTimers(true);
+    }
 
 
+    public Label getPlayerNameLabel() {
+        return playerNameLabel;
+    }
+
+    public Label getSystemNameLabel() {
+        return systemNameLabel;
+    }
 }
