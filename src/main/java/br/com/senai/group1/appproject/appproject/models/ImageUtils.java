@@ -7,6 +7,9 @@ import java.io.InputStream;
 
 public class ImageUtils {
 
+    public final static String SCENE_09_PLAYER_WIN_BACKGROUND = "/images/scenario_win_scene_01.png";
+    public final static String SCENE_09_PLAYER_LOST_BACKGROUND = "/images/scenario_lost_scene_01.png";
+
     public static Image loadInputStream(String imageUri) {
         Image image = null;
         InputStream inputStream;
