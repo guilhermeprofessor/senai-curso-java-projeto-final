@@ -21,11 +21,15 @@ public abstract class CharacterModel {
     private AnimationTimer spriteAnimationTimer;
     private long elapsedTime = 0;
 
+    private long changeAnimationStateDelay = 0;
+    private long elapsedTimeToChangeAnimation = 0;
+    private boolean canItChangeAnimationState = false;
+    private AnimationTimer changeAnimationStateAnimationTimer;
 
-    private double healthPower = 1000;
-    private double currentHealthPower = 1000;
-    private double staminaPower = 300;
-    private double currentStaminaPower = 300;
+    private double healthPower = -1;
+    private double currentHealthPower = -1;
+    private double staminaPower = -1;
+    private double currentStaminaPower = -1;
 
     private double attackPower = 100;
     private double defensePower = 100;
@@ -37,23 +41,27 @@ public abstract class CharacterModel {
     private HashMap<AnimationStateEnum, List<Image>> imageList = new HashMap<>();
     private HashMap<AnimationStateEnum, int[]> spriteSequenceList = new HashMap<>();
 
-    public CharacterModel(String name, String imageUri) {
+    public CharacterModel(String name, String imageUri, int changeAnimationStateDelayMillisecondsValue) {
         this.name = name;
         this.imageUri = imageUri;
 
+        this.changeAnimationStateDelay = changeAnimationStateDelayMillisecondsValue * 1_000_000;
+
         this.fillAnimationSpriteList();
         this.fillSpriteSequenceList();
+
+        this.playChangeAnimationStateAnimationTimer();
     }
 
     public void loadImageFromSpriteList() {
         this.imageList = new HashMap<>();
 
-        for(AnimationStateEnum enumValue : this.spriteList.keySet()) {
+        for (AnimationStateEnum enumValue : this.spriteList.keySet()) {
             List<Image> imageList = new ArrayList<>();
-            for(String uri : this.spriteList.get(enumValue)) {
+            for (String uri : this.spriteList.get(enumValue)) {
                 Image image = ImageUtils.loadInputStream(uri);
 
-                if(image == null) continue;
+                if (image == null) continue;
 
                 imageList.add(image);
             }
@@ -63,25 +71,62 @@ public abstract class CharacterModel {
 
     }
 
-    public void playSpriteAnimation() {
-        if(this.spriteAnimationTimer != null) this.spriteAnimationTimer.stop();
+    public void changeAnimationStateValue(AnimationStateEnum state) {
+        if(this.canItChangeAnimationState == false) return;
 
-        long animationDelay = (long) ((float)(.1 ) * 1_000_000_000l);
-        this.elapsedTime = 0L;
-        this.spriteAnimationTimer =  new AnimationTimer() {
+        double cost = 0;
+        for(AnimationStateStaminaCostEnum stateStamina : AnimationStateStaminaCostEnum.values()) {
+            if(state == stateStamina.getState()) {
+                cost = stateStamina.getCost();
+                break;
+            }
+        }
+
+        if(this.getCurrentStaminaPower() < cost) {
+            return;
+        }
+
+        this.changeStamina(-cost);
+        this.setCurrentState(state);
+
+        this.canItChangeAnimationState = false;
+    }
+
+    public void playChangeAnimationStateAnimationTimer() {
+        this.changeAnimationStateAnimationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if(elapsedTime > now) return;
+                if (elapsedTimeToChangeAnimation > now) return;
+
+
+                elapsedTimeToChangeAnimation = now + changeAnimationStateDelay;
+
+                canItChangeAnimationState = true;
+
+            }
+        };
+        this.changeAnimationStateAnimationTimer.start();
+    }
+
+    public void playSpriteAnimation() {
+        if (this.spriteAnimationTimer != null) this.spriteAnimationTimer.stop();
+
+        long animationDelay = (long) ((float) (.1) * 1_000_000_000l);
+        this.elapsedTime = 0L;
+        this.spriteAnimationTimer = new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                if (elapsedTime > now) return;
 
                 elapsedTime = now + animationDelay;
 
                 List<Image> animationSpriteList = imageList.get(currentState);
 
-                if(animationSpriteList == null) return;
+                if (animationSpriteList == null) return;
 
-                currentSriteIndex ++;
+                currentSriteIndex++;
 
-                if(currentSriteIndex >= spriteSequenceList.get(currentState).length) {
+                if (currentSriteIndex >= spriteSequenceList.get(currentState).length) {
                     currentSriteIndex = 0;
                     currentState = AnimationStateEnum.IDLE;
                 }
@@ -102,8 +147,8 @@ public abstract class CharacterModel {
 
     public double getHealthPowerPercent() {
         double percent = this.currentHealthPower / this.healthPower;
-        if(percent < 0) return 0;
-        if(percent > 1) return 1;
+        if (percent < 0) return 0;
+        if (percent > 1) return 1;
 
         return percent;
     }
@@ -111,8 +156,8 @@ public abstract class CharacterModel {
     public double getStaminaPowerPercent() {
         double percent = this.currentStaminaPower / this.staminaPower;
 
-        if(percent < 0) return 0;
-        if(percent > 1) return 1;
+        if (percent < 0) return 0;
+        if (percent > 1) return 1;
 
         return percent;
     }
@@ -148,7 +193,7 @@ public abstract class CharacterModel {
     }
 
     public void setCurrentSpriteImage(Image currentSpriteImage) {
-        if(currentSpriteImage == null) return;
+        if (currentSpriteImage == null) return;
 
         this.currentSpriteImage = currentSpriteImage;
     }
@@ -175,13 +220,14 @@ public abstract class CharacterModel {
 
     public void setHealthPower(double healthPower) {
         this.healthPower = healthPower;
+        this.currentHealthPower = this.healthPower;
     }
 
     public void changeHealth(double value) {
         this.currentHealthPower += value;
 
-        if(this.currentHealthPower < 0) this.currentHealthPower = 0;
-        else if(this.currentHealthPower > this.staminaPower) this.currentHealthPower = this.healthPower;
+        if (this.currentHealthPower < 0) this.currentHealthPower = 0;
+        else if (this.currentHealthPower > this.healthPower) this.currentHealthPower = this.healthPower;
     }
 
     public double getStaminaPower() {
@@ -190,13 +236,14 @@ public abstract class CharacterModel {
 
     public void setStaminaPower(double staminaPower) {
         this.staminaPower = staminaPower;
+        this.currentStaminaPower = this.staminaPower;
     }
 
     public void changeStamina(double value) {
         this.currentStaminaPower += value;
 
-        if(this.currentStaminaPower < 0) this.currentStaminaPower = 0;
-        else if(this.currentStaminaPower > this.staminaPower) this.currentStaminaPower = this.staminaPower;
+        if (this.currentStaminaPower < 0) this.currentStaminaPower = 0;
+        else if (this.currentStaminaPower > this.staminaPower) this.currentStaminaPower = this.staminaPower;
     }
 
     public double getAttackPower() {
@@ -238,7 +285,6 @@ public abstract class CharacterModel {
     public void setEnergyRecovery(double energyRecovery) {
         this.energyRecovery = energyRecovery;
     }
-
 
 
     public String getName() {

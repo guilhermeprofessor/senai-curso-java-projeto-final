@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class PlayerCharacterModel extends CharacterModel {
-    public PlayerCharacterModel(String name, String imageUri) {
-        super(name, imageUri);
+    public PlayerCharacterModel(String name, String imageUri, int changeAnimationStateDelayMillisecondsValue) {
+        super(name, imageUri, changeAnimationStateDelayMillisecondsValue);
 
         this.setCurrentState(AnimationStateEnum.IDLE);
     }
@@ -81,7 +81,7 @@ public class PlayerCharacterModel extends CharacterModel {
 
         this.getSpriteSequenceList().put(AnimationStateEnum.DODGE, new int[]{0,0,0,0,0,0,0,0,0,0});
 
-        this.getSpriteSequenceList().put(AnimationStateEnum.ENERGY, new int[]{0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1});
+        this.getSpriteSequenceList().put(AnimationStateEnum.ENERGY, new int[]{0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0});
 
         this.getSpriteSequenceList().put(AnimationStateEnum.SPECIAL_POWER, new int[]{0,1,2,1,2,1,2,1,2,1,2,3});
 

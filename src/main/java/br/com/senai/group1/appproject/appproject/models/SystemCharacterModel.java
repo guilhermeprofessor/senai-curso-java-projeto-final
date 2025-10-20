@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class SystemCharacterModel extends CharacterModel {
-    public SystemCharacterModel(String name, String imageUri) {
-        super(name, imageUri);
+    public SystemCharacterModel(String name, String imageUri, int changeAnimationStateDelayMillisecondsValue) {
+        super(name, imageUri, changeAnimationStateDelayMillisecondsValue);
 
         this.setCurrentState(AnimationStateEnum.IDLE);
     }
@@ -68,6 +68,7 @@ public class SystemCharacterModel extends CharacterModel {
 
     @Override
     public void fillSpriteSequenceList() {
+
         this.getSpriteSequenceList().put(AnimationStateEnum.IDLE, new int[]{0,0,0,1,1,1});
 
         this.getSpriteSequenceList().put(AnimationStateEnum.ATTACK, new int[]{0,0,0,0,0,0,0,0,0,0});
@@ -78,11 +79,78 @@ public class SystemCharacterModel extends CharacterModel {
 
         this.getSpriteSequenceList().put(AnimationStateEnum.DODGE, new int[]{0,0,0,0,0,0,0,0,0,0});
 
-        this.getSpriteSequenceList().put(AnimationStateEnum.ENERGY, new int[]{0,1,0,1,0,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1});
+        this.getSpriteSequenceList().put(AnimationStateEnum.ENERGY, new int[]{0,1,0,1,0,1,0,1,1,1,0});
 
         this.getSpriteSequenceList().put(AnimationStateEnum.SPECIAL_POWER, new int[]{0,1,2,1,2,1,2,1,2,1,2,3});
 
+    }
 
+    public AnimationStateEnum getRandomizeActionByAction(CharacterModel playerModel) {
+        AnimationStateEnum state = null;
 
+        switch(playerModel.getCurrentState()) {
+            case IDLE:
+                state = AnimationUtils.getRandomizeAnimationAction(new AnimationStateEnum[]{
+                       AnimationStateEnum.ENERGY,
+                       AnimationStateEnum.ENERGY,
+                       AnimationStateEnum.SPECIAL_POWER
+                });
+                break;
+            case ATTACK:
+                state = AnimationUtils.getRandomizeAnimationAction(new AnimationStateEnum[]{
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.SPECIAL_POWER,
+                        AnimationStateEnum.DEFENSE,
+                        AnimationStateEnum.DEFENSE
+                });
+                break;
+            case DEFENSE:
+                state = AnimationUtils.getRandomizeAnimationAction(new AnimationStateEnum[]{
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.ENERGY,
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.SPECIAL_POWER
+                });
+                break;
+            case DODGE:
+                state = AnimationUtils.getRandomizeAnimationAction(new AnimationStateEnum[]{
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.ENERGY,
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.SPECIAL_POWER
+                });
+                break;
+            case ENERGY:
+                state = AnimationUtils.getRandomizeAnimationAction(new AnimationStateEnum[]{
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.ENERGY,
+                        AnimationStateEnum.SPECIAL_POWER
+                });
+                break;
+            case SPECIAL_POWER:
+                state = AnimationUtils.getRandomizeAnimationAction(new AnimationStateEnum[]{
+                        AnimationStateEnum.DEFENSE,
+                        AnimationStateEnum.DEFENSE,
+                        AnimationStateEnum.DODGE,
+                        AnimationStateEnum.DODGE,
+                        AnimationStateEnum.SPECIAL_POWER
+                });
+                break;
+            case DAMAGE:
+                state = AnimationUtils.getRandomizeAnimationAction(new AnimationStateEnum[]{
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.SPECIAL_POWER
+                });
+                break;
+            default:
+                state = AnimationUtils.getRandomizeAnimationAction(new AnimationStateEnum[]{
+                        AnimationStateEnum.ATTACK,
+                        AnimationStateEnum.SPECIAL_POWER
+                });
+                break;
+        }
+        return state;
     }
 }

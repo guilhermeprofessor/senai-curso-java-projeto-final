@@ -3,6 +3,7 @@ package br.com.senai.group1.appproject.appproject.models;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 
+import java.util.Random;
 import java.util.function.Consumer;
 
 public class AnimationUtils {
@@ -20,5 +21,14 @@ public class AnimationUtils {
             }
         }).start();
 
+    }
+
+    public static AnimationStateEnum getRandomizeAnimationAction(AnimationStateEnum[] animationList) {
+        Random random = new Random();
+        int randomValue = random.nextInt(animationList.length);
+
+        AnimationStateEnum state = animationList[randomValue];
+
+        return state;
     }
 }

@@ -99,9 +99,10 @@ public class Screen07FightController extends ScreenBaseController {
     List<Button> actionButtonList = new ArrayList<>();
     List<GridPane> gridPaneList = new ArrayList<>();
     int[] gridPanelOrderList = null;
+    long hudElapsedTime = 0;
 
     public CharacterModel playerModel;
-    public CharacterModel systemModel;
+    public SystemCharacterModel systemModel;
 
     public Screen07FightController(PreparedSceneModel model) {
         super(model);
@@ -135,21 +136,48 @@ public class Screen07FightController extends ScreenBaseController {
 
         this.playerModel.playSpriteAnimation();
         this.systemModel.playSpriteAnimation();
-
+        this.animationHudDisplays();
     }
 
     private void fillPlayerCharacterModel() {
-        this.playerModel = new PlayerCharacterModel("Player 01", "/images/animations/player_idle_01.png");
+        this.playerModel = new PlayerCharacterModel("Player 01", "/images/animations/player_idle_01.png",
+                1000);
+
         this.playerModel.setCharacterImaveView(this.playerImageView);
         this.playerModel.setStatusLabel(this.playerStatusText);
+
+        this.playerModel.setCurrentState(AnimationStateEnum.IDLE);
+
+        this.playerModel.setHealthPower(2500);
+        this.playerModel.setStaminaPower(700);
+
+        this.playerModel.setAttackPower(300);
+        this.playerModel.setDefensePower(270);
+        this.playerModel.setDodgeValue(150);
+        this.playerModel.setEnergyRecovery(300);
+        this.playerModel.setSpecialPower(1000);
+
+
 
         this.playerModel.loadImageFromSpriteList();
 
     }
     private void fillSystemCharacterModel() {
-        this.systemModel = new SystemCharacterModel("System", "/images/animations/system_idle_01.png");
+        this.systemModel = new SystemCharacterModel("System", "/images/animations/system_idle_01.png", 1500);
         this.systemModel.setCharacterImaveView(this.systemImageView);
         this.systemModel.setStatusLabel(this.systemStatusText);
+
+
+        this.systemModel.setCurrentState(AnimationStateEnum.IDLE);
+
+        this.systemModel.setHealthPower(5000);
+        this.systemModel.setStaminaPower(300);
+
+        this.systemModel.setAttackPower(350);
+        this.systemModel.setDefensePower(270);
+        this.systemModel.setDodgeValue(150);
+        this.systemModel.setEnergyRecovery(30);
+        this.systemModel.setSpecialPower(1500);
 
         this.systemModel.loadImageFromSpriteList();
     }
@@ -168,15 +196,47 @@ public class Screen07FightController extends ScreenBaseController {
     }
 
     public void animationHudDisplays() {
-        long animationDelay = (long) ((float)(.1 ) * 1_000_000_000l);
-        double elapsedTime1 = 0L;
+        long animationDelay = (long) ((float)(.3 ) * 1_000_000_000l);
+        this.hudElapsedTime = 0L;
 
         AnimationTimer animationTimer = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if(elapsedTime1 > now) return;
+                if(hudElapsedTime > now) return;
 
+                hudElapsedTime = now + animationDelay;
 
+                double playerHpHUDWidth =
+                        playerHPBackgroundRect.getWidth() * playerModel.getHealthPowerPercent();
+                double systemHpHUDWidth =
+                        systemHPBackgroundRect.getWidth() * systemModel.getHealthPowerPercent();
+
+                playerHPForegroundRect.setWidth(playerHpHUDWidth);
+                systemHPForegroundRect.setWidth(systemHpHUDWidth);
+
+                double playerSpHUDWidth = playerHPBackgroundRect.getWidth() * playerModel.getStaminaPowerPercent();
+                double systemSpHUDWidth = systemHPBackgroundRect.getWidth() * systemModel.getStaminaPowerPercent();
+
+                playerSPForegroundRect.setWidth(playerSpHUDWidth);
+                systemSPForegroundRect.setWidth(systemSpHUDWidth);
+
+                if(playerModel.getCurrentState() == AnimationStateEnum.IDLE) {
+                    playerModel.changeStamina(-1 * AnimationStateStaminaCostEnum.IDLE.getCost());
+                }
+
+                if(systemModel.getCurrentState() == AnimationStateEnum.IDLE) {
+                    systemModel.changeStamina(-1 * AnimationStateStaminaCostEnum.IDLE.getCost());
+                }
+
+                if(playerModel.getCurrentState() == AnimationStateEnum.ENERGY) {
+                    playerModel.changeStamina(playerModel.getEnergyRecovery());
+                    playerModel.changeHealth(playerModel.getEnergyRecovery() / 3);
+                }
+
+                if(systemModel.getCurrentState() == AnimationStateEnum.ENERGY) {
+                    systemModel.changeStamina(systemModel.getEnergyRecovery());
+                    systemModel.changeHealth(systemModel.getEnergyRecovery() / 2);
+                }
             }
         };
 

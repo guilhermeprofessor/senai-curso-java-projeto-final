@@ -4,11 +4,8 @@ import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,79 +80,208 @@ public class ActionButtonUtils {
         animation.start();
     }
 
-    public static void setActionToAttackButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, CharacterModel otherCharacter) {
+    public static void setActionToAttackButton(Button button, int delayTime, Node scenePane,
+                                               CharacterModel mainCharacter, SystemCharacterModel otherCharacter) {
 
         button.setOnAction((ActionEvent event) -> {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
 
-//            AnchorPane sceneAnchorPane = ((AnchorPane) scenePane);
-//            ImageView targetView = otherCharacter.getCharacterImaveView();
+            AnimationStateEnum mainAction = AnimationStateEnum.ATTACK;
+            mainCharacter.changeAnimationStateValue(mainAction);
 
-            // carrega imagem do ataque do player no system
-//            Image areaSystemImage = ImageUtils.loadInputStream("/images/action-area-effect.png");
-//            ImageView systemImageView = new ImageView(areaSystemImage);
-//            systemImageView.setFitWidth(targetView.getFitWidth());
-//            systemImageView.setFitHeight(targetView.getFitHeight());
-//            AnchorPane.setBottomAnchor(systemImageView, AnchorPane.getBottomAnchor(targetView));
-//            AnchorPane.setRightAnchor(systemImageView, AnchorPane.getRightAnchor(targetView) - targetView.getFitWidth()/2);
+            AnimationStateEnum otherAction = otherCharacter.getRandomizeActionByAction(mainCharacter);
+
+            otherCharacter.changeAnimationStateValue(otherAction);
 
 
+            if(mainCharacter.getCurrentState() != mainAction) {
+                return;
+            }
 
-            mainCharacter.setCurrentState(AnimationStateEnum.ATTACK);
-            otherCharacter.setCurrentState(AnimationStateEnum.ATTACK);
+            final int mainAttackValue = ConsequencesResultUtils.calculateDamageValue(otherCharacter, mainCharacter);
+
+            final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
+
 
             AnimationUtils.executeAfterTime(500,() -> {
-//                sceneAnchorPane.getChildren().add(systemImageView);
-                otherCharacter.getStatusLabel().setTextFill(Color.RED);
+                if(mainAttackValue > 0) {
+                    otherCharacter.getStatusLabel().setTextFill(Color.RED);
+                    otherCharacter.getStatusLabel().setText("-"+ mainAttackValue);
+                    otherCharacter.changeHealth(-mainAttackValue);
 
-                otherCharacter.getStatusLabel().setText("-"+((int)mainCharacter.getAttackPower())+"");
+                } else if(mainAttackValue < 0 && otherAction == AnimationStateEnum.DEFENSE){
+                    mainCharacter.getStatusLabel().setTextFill(Color.RED);
+                    mainCharacter.getStatusLabel().setText(""+ mainAttackValue);
+                    mainCharacter.changeHealth(mainAttackValue);
+                }
+
+                if(otherAttackValue > 0 && (otherCharacter.getCurrentState() == AnimationStateEnum.ATTACK || otherCharacter.getCurrentState() == AnimationStateEnum.SPECIAL_POWER)) {
+                    mainCharacter.getStatusLabel().setTextFill(Color.RED);
+                    mainCharacter.getStatusLabel().setText("-"+ otherAttackValue);
+                    mainCharacter.changeHealth(-otherAttackValue);
+                }
             });
+
             AnimationUtils.executeAfterTime(1000,() -> {
-//                sceneAnchorPane.getChildren().remove(systemImageView);
-
                 otherCharacter.getStatusLabel().setText("");
+                mainCharacter.getStatusLabel().setText("");
             });
         });
     }
 
-    public static void setActionToDefenseButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, CharacterModel otherCharacter) {
+    public static void setActionToDefenseButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, SystemCharacterModel otherCharacter) {
 
         button.setOnAction((ActionEvent event) -> {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
-            mainCharacter.setCurrentState(AnimationStateEnum.DEFENSE);
-            otherCharacter.setCurrentState(AnimationStateEnum.DEFENSE);
+            AnimationStateEnum mainAction = AnimationStateEnum.DEFENSE;
+            mainCharacter.changeAnimationStateValue(mainAction);
+
+            AnimationStateEnum otherAction = otherCharacter.getRandomizeActionByAction(mainCharacter);
+
+            otherCharacter.changeAnimationStateValue(otherAction);
+
+
+            if(mainCharacter.getCurrentState() != mainAction) {
+                return;
+            }
+
+            final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
+
+
+            AnimationUtils.executeAfterTime(500,() -> {
+                if(otherAttackValue > 0) {
+                    mainCharacter.getStatusLabel().setTextFill(Color.RED);
+                    mainCharacter.getStatusLabel().setText("-"+ otherAttackValue);
+                    mainCharacter.changeHealth(-otherAttackValue);
+
+                } else if(otherAttackValue < 0 && (otherAction == AnimationStateEnum.ATTACK || otherAction == AnimationStateEnum.SPECIAL_POWER)){
+                    otherCharacter.getStatusLabel().setTextFill(Color.RED);
+                    otherCharacter.getStatusLabel().setText(""+ otherAttackValue);
+                    otherCharacter.changeHealth(-otherAttackValue);
+                }
+            });
+
+            AnimationUtils.executeAfterTime(1000,() -> {
+                otherCharacter.getStatusLabel().setText("");
+                mainCharacter.getStatusLabel().setText("");
+            });
         });
     }
 
-    public static void setActionToEnergyButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, CharacterModel otherCharacter) {
+    public static void setActionToEnergyButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, SystemCharacterModel otherCharacter) {
 
         button.setOnAction((ActionEvent event) -> {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
-            mainCharacter.setCurrentState(AnimationStateEnum.ENERGY);
-            otherCharacter.setCurrentState(AnimationStateEnum.ENERGY);
+            AnimationStateEnum mainAction = AnimationStateEnum.ENERGY;
+            mainCharacter.changeAnimationStateValue(mainAction);
+
+            AnimationStateEnum otherAction = otherCharacter.getRandomizeActionByAction(mainCharacter);
+
+            otherCharacter.changeAnimationStateValue(otherAction);
+
+
+            if(mainCharacter.getCurrentState() != mainAction) {
+                return;
+            }
+
+            final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
+
+
+            AnimationUtils.executeAfterTime(500,() -> {
+                if(otherAttackValue > 0) {
+                    mainCharacter.getStatusLabel().setTextFill(Color.RED);
+                    mainCharacter.getStatusLabel().setText("-"+ otherAttackValue);
+                    mainCharacter.changeHealth(-otherAttackValue);
+
+                }
+            });
+
+            AnimationUtils.executeAfterTime(1000,() -> {
+                otherCharacter.getStatusLabel().setText("");
+                mainCharacter.getStatusLabel().setText("");
+            });
         });
     }
 
-    public static void setActionToDodgeButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, CharacterModel otherCharacter) {
+    public static void setActionToDodgeButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, SystemCharacterModel otherCharacter) {
 
         button.setOnAction((ActionEvent event) -> {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
-            mainCharacter.setCurrentState(AnimationStateEnum.DODGE);
-            otherCharacter.setCurrentState(AnimationStateEnum.DODGE);
+            AnimationStateEnum mainAction = AnimationStateEnum.DODGE;
+            mainCharacter.changeAnimationStateValue(mainAction);
+
+            AnimationStateEnum otherAction = otherCharacter.getRandomizeActionByAction(mainCharacter);
+
+            otherCharacter.changeAnimationStateValue(otherAction);
+
+
+            if(mainCharacter.getCurrentState() != mainAction) {
+                return;
+            }
+
+            final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
+
+
+            AnimationUtils.executeAfterTime(500,() -> {
+                if(otherAttackValue > 0) {
+                    mainCharacter.getStatusLabel().setTextFill(Color.RED);
+                    mainCharacter.getStatusLabel().setText("-"+ otherAttackValue);
+                    mainCharacter.changeHealth(-otherAttackValue);
+                }
+            });
+
+            AnimationUtils.executeAfterTime(1000,() -> {
+                otherCharacter.getStatusLabel().setText("");
+                mainCharacter.getStatusLabel().setText("");
+            });
         });
     }
 
-    public static void setActionToSpecialPowerButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, CharacterModel otherCharacter) {
+    public static void setActionToSpecialPowerButton(Button button, int delayTime, Node scenePane, CharacterModel mainCharacter, SystemCharacterModel otherCharacter) {
 
         button.setOnAction((ActionEvent event) -> {
             ActionButtonUtils.setDefaultActionToActionButton(button, delayTime);
 
-            mainCharacter.setCurrentState(AnimationStateEnum.SPECIAL_POWER);
-            otherCharacter.setCurrentState(AnimationStateEnum.SPECIAL_POWER);
+            AnimationStateEnum mainAction = AnimationStateEnum.SPECIAL_POWER;
+            mainCharacter.changeAnimationStateValue(mainAction);
+
+            AnimationStateEnum otherAction = otherCharacter.getRandomizeActionByAction(mainCharacter);
+
+            otherCharacter.changeAnimationStateValue(otherAction);
+
+
+            if(mainCharacter.getCurrentState() != mainAction) {
+                return;
+            }
+
+            final int mainAttackValue = ConsequencesResultUtils.calculateDamageValue(otherCharacter, mainCharacter);
+
+            final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
+
+
+            AnimationUtils.executeAfterTime(500,() -> {
+                if(mainAttackValue > 0) {
+                    otherCharacter.getStatusLabel().setTextFill(Color.RED);
+                    otherCharacter.getStatusLabel().setText("-"+ mainAttackValue);
+                    otherCharacter.changeHealth(-mainAttackValue);
+
+                }
+
+                if(otherAttackValue > 0 && (otherCharacter.getCurrentState() == AnimationStateEnum.ATTACK || otherCharacter.getCurrentState() == AnimationStateEnum.SPECIAL_POWER)) {
+                    mainCharacter.getStatusLabel().setTextFill(Color.RED);
+                    mainCharacter.getStatusLabel().setText("-"+ otherAttackValue);
+                    mainCharacter.changeHealth(-otherAttackValue);
+                }
+            });
+
+            AnimationUtils.executeAfterTime(1000,() -> {
+                otherCharacter.getStatusLabel().setText("");
+                mainCharacter.getStatusLabel().setText("");
+            });
         });
     }
 
