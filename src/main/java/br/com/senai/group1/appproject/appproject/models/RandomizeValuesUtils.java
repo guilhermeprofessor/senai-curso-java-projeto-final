@@ -89,10 +89,6 @@ public class RandomizeValuesUtils {
         Random random = new Random();
         int selectedValue = random.nextInt(posList.length);
 
-        System.out.println("------------------");
-        System.out.println(selectedValue+ ": " + posList[selectedValue]);
-        System.out.println("------------------");
-
         return posList[selectedValue];
     }
 
@@ -101,10 +97,6 @@ public class RandomizeValuesUtils {
         Random random = new Random();
         int selectedValue = random.nextInt(posList.length);
 
-        System.out.println("------------------");
-        System.out.println(selectedValue+ ": " + posList[selectedValue]);
-        System.out.println("------------------");
-
         return posList[selectedValue];
     }
     public static VPos randomizeVPosEnumValue() {
@@ -112,9 +104,7 @@ public class RandomizeValuesUtils {
         Random random = new Random();
         int selectedValue = random.nextInt(posList.length);
 
-        System.out.println("------------------");
-        System.out.println(selectedValue+ ": " + posList[selectedValue]);
-        System.out.println("------------------");
+
 
         return posList[selectedValue];
     }

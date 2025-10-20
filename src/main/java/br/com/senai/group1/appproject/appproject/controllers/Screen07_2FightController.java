@@ -154,12 +154,6 @@ public class Screen07_2FightController extends ScreenBaseController {
             newOrderList[i] = orderList[i] -1;
         }
 
-        Arrays.stream(orderList).forEach(number -> System.out.print(number+" "));
-        System.out.println();
-        Arrays.stream(newOrderList).forEach(number -> System.out.print(number + " "));
-        System.out.println();
-
-        System.out.println("================");
 
         return newOrderList;
     }
