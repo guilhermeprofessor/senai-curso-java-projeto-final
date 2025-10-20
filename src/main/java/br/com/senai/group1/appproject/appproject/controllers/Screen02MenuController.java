@@ -67,26 +67,30 @@ public class Screen02MenuController extends ScreenBaseController {
         Scene scene = this.playButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen04Tutorial);
+        stage.setScene(SceneHandler.screen04TutorialModel.getScene());
     }
 
     public void settingsButtonEvent() {
         Scene scene = this.settingsButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen03Settings);
+        stage.setScene(SceneHandler.screen03SettingsModel.getScene());
     }
 
     public void creditsButtonEvent() {
         Scene scene = this.settingsButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
-        stage.setScene(SceneHandler.screen08Credits);
+        stage.setScene(SceneHandler.screen08CreditsModel.getScene());
     }
 
 
     public void closeButtonEvent() {
-        System.exit(0);
+        Screen10ThanksgivingController controller =
+                (Screen10ThanksgivingController)  SceneHandler.screen10ThanksgivingModel.getController();
+
+        controller.setCanItStopApp(true);
+        SceneHandler.getCurrentStage().setScene(SceneHandler.screen10ThanksgivingModel.getScene());
     }
 
 }
