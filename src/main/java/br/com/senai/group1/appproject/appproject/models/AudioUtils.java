@@ -9,6 +9,7 @@ import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 public class AudioUtils {
 
@@ -28,11 +29,13 @@ public class AudioUtils {
     public static Media loadMedia(String path) {
         Media media = null;
         try {
-            File file = new File(MainApplication.class.getResource(path).toURI());
+            URL url = MainApplication.class.getResource(path);
 
-            String fileUri = file.toURI().toString();
+            if(url == null) return null;
 
-            media = new Media(fileUri);
+            String externalForm = url.toExternalForm();
+
+            media = new Media(externalForm);
         } catch(Exception ex) {
             ex.printStackTrace();
         }
@@ -129,10 +132,12 @@ public class AudioUtils {
 
         AudioClip audioClip = null;
         try {
-            audioClip = AudioUtils.getAudioClipByPath(MainApplication.class.getResource(path).toURI().toString(),
-                    AppSettings.getEffectVolume());
-        } catch (URISyntaxException ex) {
-            ex.printStackTrace();
+            URL url = MainApplication.class.getResource(path);
+            if(url == null) return;
+
+            String externalPath = url.toExternalForm();
+
+            audioClip = AudioUtils.getAudioClipByPath(externalPath, AppSettings.getEffectVolume());
         } catch(Exception ex) {
             ex.printStackTrace();
         }
