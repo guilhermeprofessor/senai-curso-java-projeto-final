@@ -149,7 +149,8 @@ public class Screen07FightController extends ScreenBaseController {
         ActionButtonUtils.setActionToDefenseButton(this.actionDefenseButton, 3500, this.scenePane, this.playerModel, this.systemModel);
         ActionButtonUtils.setActionToEnergyButton(this.actionEnergyButton, 2500, this.scenePane, this.playerModel, this.systemModel);
         ActionButtonUtils.setActionToDodgeButton(this.actionDodgeButton, 1500, this.scenePane, this.playerModel, this.systemModel);
-        ActionButtonUtils.setActionToSpecialPowerButton(this.actionSpecialPowerButton, 10000, this.scenePane, this.playerModel, this.systemModel);
+        ActionButtonUtils.setActionToSpecialPowerButton(this.actionSpecialPowerButton, 7000, this.scenePane, this.playerModel,
+                this.systemModel);
 
         this.playerModel.loadImageFromSpriteList();
         this.systemModel.loadImageFromSpriteList();
@@ -185,7 +186,7 @@ public class Screen07FightController extends ScreenBaseController {
         this.playerModel.setDefensePower(270);
         this.playerModel.setDodgeValue(150);
         this.playerModel.setEnergyRecovery(300);
-        this.playerModel.setSpecialPower(10000);
+        this.playerModel.setSpecialPower(1000);
 
 
 
@@ -203,11 +204,11 @@ public class Screen07FightController extends ScreenBaseController {
         this.systemModel.setHealthPower(5000);
         this.systemModel.setStaminaPower(300);
 
-        this.systemModel.setAttackPower(3500);
+        this.systemModel.setAttackPower(350);
         this.systemModel.setDefensePower(270);
         this.systemModel.setDodgeValue(150);
-        this.systemModel.setEnergyRecovery(30);
-        this.systemModel.setSpecialPower(1500);
+        this.systemModel.setEnergyRecovery(20);
+        this.systemModel.setSpecialPower(1000);
 
         this.systemModel.loadImageFromSpriteList();
     }

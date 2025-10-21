@@ -103,6 +103,8 @@ public class ActionButtonUtils {
 
             final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
 
+            AudioUtils.playAudioClipByAnimationStateEnum(mainCharacter);
+            AudioUtils.playAudioClipByAnimationStateEnum(otherCharacter);
 
             AnimationUtils.executeAfterTime(500,() -> {
                 if(mainAttackValue > 0) {
@@ -147,8 +149,13 @@ public class ActionButtonUtils {
                 return;
             }
 
+            if(otherCharacter.getCurrentState() != AnimationStateEnum.ATTACK && otherCharacter.getCurrentState() != AnimationStateEnum.SPECIAL_POWER) return;
+
+
             final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
 
+            AudioUtils.playAudioClipByAnimationStateEnum(mainCharacter);
+            AudioUtils.playAudioClipByAnimationStateEnum(otherCharacter);
 
             AnimationUtils.executeAfterTime(500,() -> {
                 if(otherAttackValue > 0) {
@@ -190,6 +197,9 @@ public class ActionButtonUtils {
             final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
 
 
+            AudioUtils.playAudioClipByAnimationStateEnum(mainCharacter);
+            AudioUtils.playAudioClipByAnimationStateEnum(otherCharacter);
+
             AnimationUtils.executeAfterTime(500,() -> {
                 if(otherAttackValue > 0) {
                     mainCharacter.getStatusLabel().setTextFill(Color.RED);
@@ -226,6 +236,9 @@ public class ActionButtonUtils {
             final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
 
 
+            AudioUtils.playAudioClipByAnimationStateEnum(mainCharacter);
+            AudioUtils.playAudioClipByAnimationStateEnum(otherCharacter);
+
             AnimationUtils.executeAfterTime(500,() -> {
                 if(otherAttackValue > 0) {
                     mainCharacter.getStatusLabel().setTextFill(Color.RED);
@@ -261,6 +274,9 @@ public class ActionButtonUtils {
             final int mainAttackValue = ConsequencesResultUtils.calculateDamageValue(otherCharacter, mainCharacter);
 
             final int otherAttackValue = ConsequencesResultUtils.calculateDamageValue(mainCharacter,otherCharacter);
+
+            AudioUtils.playAudioClipByAnimationStateEnum(mainCharacter);
+            AudioUtils.playAudioClipByAnimationStateEnum(otherCharacter);
 
 
             AnimationUtils.executeAfterTime(500,() -> {

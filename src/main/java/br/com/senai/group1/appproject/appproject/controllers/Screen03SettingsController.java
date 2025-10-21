@@ -1,5 +1,6 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
+import br.com.senai.group1.appproject.appproject.models.AppSettings;
 import br.com.senai.group1.appproject.appproject.models.PreparedSceneModel;
 import br.com.senai.group1.appproject.appproject.models.ResolutionModel;
 import br.com.senai.group1.appproject.appproject.models.SceneHandler;
@@ -120,13 +121,19 @@ public class Screen03SettingsController extends ScreenBaseController {
         this.volumeSlider.setMin(0);
         this.volumeSlider.setMax(100);
 
+        this.volumeSlider.setValue(AppSettings.getMusicVolume() * 100);
+
         this.volumeSlider.setShowTickLabels(true);
         this.volumeSlider.setShowTickMarks(true);
 
         this.volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
-                double value = newValue.doubleValue();
+                double value = newValue.doubleValue() / 100;
+
+                AppSettings.setMusicVolume(value);
+                if(AppSettings.getBackgroundMediaPlayer() == null) return;
+                AppSettings.getBackgroundMediaPlayer().setVolume(AppSettings.getMusicVolume());
             }
         });
     }
@@ -135,13 +142,18 @@ public class Screen03SettingsController extends ScreenBaseController {
         this.soundEffectsSlider.setMin(0);
         this.soundEffectsSlider.setMax(100);
 
+        this.soundEffectsSlider.setValue(AppSettings.getEffectVolume() * 100);
+
         this.soundEffectsSlider.setShowTickLabels(true);
         this.soundEffectsSlider.setShowTickMarks(true);
 
         this.soundEffectsSlider.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number oldValue, Number newValue) {
-                double value = newValue.doubleValue();
+                double value = newValue.doubleValue() / 100;
+                AppSettings.setEffectVolume(value);
+                if(AppSettings.getForegroundMediaPlayer() == null) return;
+                AppSettings.getForegroundMediaPlayer().setVolume(AppSettings.getEffectVolume());
             }
         });
     }
