@@ -35,14 +35,14 @@ public class Screen05SelectPlayerController extends ScreenBaseController {
     @FXML
     private TextField nameTextField;
 
-    @FXML
-    private Button nextButton;
+//    @FXML
+//    private Button nextButton;
 
     @FXML
     private ImageView playerImageView;
-
-    @FXML
-    private Button previousButton;
+//
+//    @FXML
+//    private Button previousButton;
 
     @FXML
     private Button startButton;
@@ -72,14 +72,14 @@ public class Screen05SelectPlayerController extends ScreenBaseController {
         this.startButton.setOnAction((ActionEvent event) -> {
            this.startButtonEvent();
         });
-
-        this.nextButton.setOnAction((ActionEvent event) -> {
-           this.nextButtonEvent();
-        });
-
-        this.previousButton.setOnAction((ActionEvent event) -> {
-           this.previousButtonEvent();
-        });
+//
+//        this.nextButton.setOnAction((ActionEvent event) -> {
+//           this.nextButtonEvent();
+//        });
+//
+//        this.previousButton.setOnAction((ActionEvent event) -> {
+//           this.previousButtonEvent();
+//        });
 
     }
 

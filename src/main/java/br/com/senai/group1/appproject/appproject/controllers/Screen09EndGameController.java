@@ -1,7 +1,6 @@
 package br.com.senai.group1.appproject.appproject.controllers;
 
 import br.com.senai.group1.appproject.appproject.models.*;
-import de.jensd.fx.glyphs.testapps.App;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
