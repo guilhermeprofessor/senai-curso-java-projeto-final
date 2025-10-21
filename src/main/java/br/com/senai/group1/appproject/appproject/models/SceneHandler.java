@@ -4,8 +4,8 @@ import br.com.senai.group1.appproject.appproject.MainApplication;
 import br.com.senai.group1.appproject.appproject.controllers.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -37,26 +37,26 @@ public class SceneHandler {
     private static Stage currentStage = null;
 
     public static void setStage(Stage stage) {
-        if(stage == null) return;
+        if (stage == null) return;
 
         SceneHandler.currentStage = (stage);
     }
+
     public static Stage getCurrentStage() {
         return SceneHandler.currentStage;
     }
 
     public static Scene getCurrentScene() {
-        if(SceneHandler.currentStage == null) return null;
+        if (SceneHandler.currentStage == null) return null;
 
         return SceneHandler.getCurrentStage().getScene();
     }
 
 
-
     public static Scene getSceneByElement(Node node) throws Exception {
         Scene scene = node.getScene();
 
-        if(scene == null) {
+        if (scene == null) {
             System.err.println("This element is not in the scene");
         }
 
@@ -66,21 +66,21 @@ public class SceneHandler {
     public static Stage getStageByElement(Node node) throws Exception {
         Scene scene = node.getScene();
 
-        if(scene == null) {
+        if (scene == null) {
             throw new Exception("This element is not in the scene");
         }
 
         Stage stage = (Stage) scene.getWindow();
 
 
-        if(stage == null) {
+        if (stage == null) {
             throw new Exception("The stage is null");
         }
 
         return stage;
     }
 
-    public static FXMLLoader getFxmlLoader(String viewPath)  throws IOException {
+    public static FXMLLoader getFxmlLoader(String viewPath) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(viewPath));
 
         return fxmlLoader;
@@ -169,6 +169,7 @@ public class SceneHandler {
 
         return model;
     }
+
     public static AppSceneModel loadScreen08CreditsScene(Stage stage) throws IOException {
         ScreenBaseController controller = new Screen08CreditsController(stage);
 
@@ -179,6 +180,7 @@ public class SceneHandler {
 
         return model;
     }
+
     public static AppSceneModel loadScreen09EngGameScene(Stage stage) throws IOException {
         ScreenBaseController controller = new Screen09EndGameController(stage);
 
@@ -200,7 +202,6 @@ public class SceneHandler {
 
         return model;
     }
-
 
 
     public static void loadAllSceneExceptTheOpeningScene() {
@@ -240,18 +241,40 @@ public class SceneHandler {
 
     public static void loadAllSceneAndGoToOpeningScene() {
         SceneHandler.loadAllScene();
-        SceneHandler.goToScene01OpeningScene();
+        SceneHandler.goToScene01Opening();
     }
 
     public static void goToScene(Scene scene) {
         SceneHandler.getCurrentStage().setScene(scene);
     }
 
-    public static void goToScene01OpeningScene() {
+    public static void goToScene01Opening() {
         SceneHandler.goToScene(SceneHandler.screen01OpeningModel.getScene());
+        AudioUtils.changeMediaWithDecay(AppSettings.getBackgroundMediaPlayer(), 0.001, 10_000_000);
+        AppSettings.setBackgroundMediaPlayer(AudioUtils.getMediaPlayerByPath(AudioUtils.OPENING_SOUND, AppSettings.getMusicVolume()));
+        AppSettings.getBackgroundMediaPlayer().play();
+        AppSettings.getBackgroundMediaPlayer().setCycleCount(MediaPlayer.INDEFINITE);
     }
-    public static void goToScene02MainMenu() {
+
+    public static void goToScene02MainMenu(boolean playMusicAgain) {
         SceneHandler.goToScene(SceneHandler.screen02MenuModel.getScene());
+        if (playMusicAgain) {
+
+            AudioUtils.changeMediaWithDecay(AppSettings.getBackgroundMediaPlayer(), 0.001, 10_000_000);
+            AppSettings.setBackgroundMediaPlayer(AudioUtils.getMediaPlayerByPath(AudioUtils.OPENING_SOUND, AppSettings.getMusicVolume()));
+            AppSettings.getBackgroundMediaPlayer().play();
+            AppSettings.getBackgroundMediaPlayer().setCycleCount(MediaPlayer.INDEFINITE);
+        }
+    }
+
+    public static void goToScene07Fight() {
+        SceneHandler.goToScene(SceneHandler.screen07FightModel.getScene());
+        MediaPlayer mediaPlayer = AudioUtils.getMediaPlayerByPath(AudioUtils.BATTLE_SOUND, AppSettings.getMusicVolume());
+        MediaPlayer oldSound = AppSettings.getBackgroundMediaPlayer();
+        AudioUtils.changeMediaWithDecay(oldSound, 0.001, 10_000_000);
+        AppSettings.setBackgroundMediaPlayer(mediaPlayer);
+        AppSettings.getBackgroundMediaPlayer().play();
+        AppSettings.getBackgroundMediaPlayer().setCycleCount(MediaPlayer.INDEFINITE);
     }
 
 }

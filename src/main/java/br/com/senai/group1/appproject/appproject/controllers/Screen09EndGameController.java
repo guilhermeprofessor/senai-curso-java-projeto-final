@@ -87,7 +87,9 @@ public class Screen09EndGameController extends ScreenBaseController {
 
     public void goToMenuScene() {
         SceneHandler.loadAllScene();
-        SceneHandler.goToScene02MainMenu();
+        SceneHandler.goToScene02MainMenu(true);
+
+
     }
 
 }

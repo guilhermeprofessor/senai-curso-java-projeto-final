@@ -78,7 +78,7 @@ public class Screen02MenuController extends ScreenBaseController {
     }
 
     public void creditsButtonEvent() {
-        Scene scene = this.settingsButton.getScene();
+        Scene scene = this.creditsButton.getScene();
         Stage stage = (Stage) scene.getWindow();
 
         stage.setScene(SceneHandler.screen08CreditsModel.getScene());

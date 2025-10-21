@@ -57,7 +57,7 @@ public class Screen10ThanksgivingController extends ScreenBaseController {
         AnimationTimer animationTime = new AnimationTimer() {
             @Override
             public void handle(long now) {
-                if(elapsedTime + 5_000_000_000L > now) return;
+                if(elapsedTime + 3_000_000_000L > now) return;
 
                 this.stop();
                 System.exit(0);

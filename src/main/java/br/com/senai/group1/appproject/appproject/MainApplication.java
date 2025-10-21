@@ -39,7 +39,7 @@ public class MainApplication extends Application {
         delayToLoadNextScreen.setOnFinished((ActionEvent event) -> {
             try {
 //                stage.setScene(SceneHandler.screen02Menu);
-                SceneHandler.goToScene02MainMenu();
+                SceneHandler.goToScene02MainMenu(false);
 //                stage.setScene(SceneHandler.screen07Fight);
             } catch(Exception ex) {
                 ex.printStackTrace();

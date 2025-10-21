@@ -109,7 +109,7 @@ public class Screen05SelectPlayerController extends ScreenBaseController {
         controller.playerModel.setName(AppSettings.getPlayerName());
         controller.getPlayerNameLabel().setText(AppSettings.getPlayerName());
         controller.getSystemNameLabel().setText("Valentão");
-        stage.setScene(SceneHandler.screen07FightModel.getScene());
+        SceneHandler.goToScene07Fight();
     }
 
     public void nextButtonEvent() {
