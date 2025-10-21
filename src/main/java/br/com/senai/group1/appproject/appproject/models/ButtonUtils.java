@@ -61,8 +61,6 @@ public class ButtonUtils {
 //        anchorPane.prefWidthProperty().bind(button.widthProperty());
 //        anchorPane.prefHeightProperty().bind(button.heightProperty());
 
-        System.out.println(anchorPane.getPrefHeight());
-        System.out.println(anchorPane.getPrefWidth());
 
         ImageView backgroundImageView = new ImageView();
         Image image = ImageUtils.loadInputStream("/images/icon-button-empty-01.png");
