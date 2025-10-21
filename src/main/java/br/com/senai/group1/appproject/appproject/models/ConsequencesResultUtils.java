@@ -11,7 +11,7 @@ public class ConsequencesResultUtils {
 
         switch(other.getCurrentState()) {
             case ATTACK: attackValue = random.nextInt((int)other.getAttackPower()); break;
-            case SPECIAL_POWER: attackValue = random.nextInt((int)other.getSpecialPower()); break;
+            case SPECIAL_POWER: attackValue = random.nextInt((int)(other.getSpecialPower()*0.7)) + ((int) (other.getSpecialPower() *0.3)); break;
             default: attackValue = 0;
         }
 
