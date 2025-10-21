@@ -5,6 +5,7 @@ module br.com.senai.group1.appproject.appproject {
     requires java.desktop;
     requires jdk.compiler;
     requires fontawesomefx;
+    requires javafx.media;
 
 
     opens br.com.senai.group1.appproject.appproject to javafx.fxml;
